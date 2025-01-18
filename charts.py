@@ -9,32 +9,29 @@ file_path = 'CleanHistoricalDataSP500.csv'
 data = pd.read_csv(file_path)
 
 # Date column to datetime format
-data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
+data['Date'] = pd.to_datetime(data['Date'], format='%Y-%m-%d')
 data.sort_values(by='Date', inplace=True)
 data.set_index('Date', inplace=True)
 
 #Daily Returns
-data['Daily Return'] = data['Close/Last'].pct_change() * 100  
+data['Daily Return'] = data['Close'].pct_change() * 100  
 
-#Monthly Returns
-data['Month'] = data.index.to_period('M')
-monthly_returns = data.groupby('Month')['Close/Last'].apply(lambda x: (x.iloc[-1] / x.iloc[0] - 1) * 100)  
 
 #Annual Returns
 data['Year'] = data.index.to_period('Y')
-annual_returns = data.groupby('Year')['Close/Last'].apply(lambda x: (x.iloc[-1] / x.iloc[0] - 1) * 100) 
+annual_returns = data.groupby('Year')['Close'].apply(lambda x: (x.iloc[-1] / x.iloc[0] - 1) * 100) 
 
 #Annual Growth Rate
 total_years = (data.index[-1] - data.index[0]).days / 365.25
-cagr = ((data['Close/Last'].iloc[-1] / data['Close/Last'].iloc[0]) ** (1 / total_years) - 1) * 100  
+cagr = ((data['Close'].iloc[-1] / data['Close'].iloc[0]) ** (1 / total_years) - 1) * 100  
 
 #Maximum Drawdowns
-running_max = data['Close/Last'].cummax()
-drawdowns = (data['Close/Last'] / running_max - 1) * 100
+running_max = data['Close'].cummax()
+drawdowns = (data['Close'] / running_max - 1) * 100
 max_drawdown = drawdowns.min()
 
 #Maximum Loss in a Year
-max_loss_year = data.groupby('Year')['Close/Last'].apply(lambda x: (x / x.cummax() - 1).min() * 100)  
+max_loss_year = data.groupby('Year')['Close'].apply(lambda x: (x / x.cummax() - 1).min() * 100)  
 
 # Analytics Summary
 analytics = {
@@ -64,13 +61,6 @@ plt.xlabel('Year')
 plt.ylabel('Return (%)')
 plt.xticks(rotation=0)
 
-#Monthly Returns Bar Chart
-plt.subplot(2, 2, 3)
-monthly_returns.plot(kind='bar', color='orange')
-plt.title('Monthly Returns')
-plt.xlabel('Month')
-plt.ylabel('Return (%)')
-plt.xticks(ticks=range(0, len(monthly_returns), 6), labels=monthly_returns.index[::6].strftime('%Y-%m'), rotation=45)
 #Drawdowns Line Chart
 plt.subplot(2, 2, 4)
 plt.plot(drawdowns, color='red')

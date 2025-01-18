@@ -21,5 +21,5 @@ df = df[(df["Date"].dt.year != 1927) & (df["Date"].dt.year != 2025)]
 df["Date"] = df["Date"].dt.date
 
 
-df.to_csv("HistoricalDataSP500.csv", index=False)
+df.to_csv("CleanHistoricalDataSP500.csv", index=False)
 
