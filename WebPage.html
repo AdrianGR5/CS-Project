@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>S&P 500 Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+        .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+        .fa-chart-line {font-size:200px}
+        .chart-container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .chart {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+        }
+        .chart-description {
+            flex: 1;
+            padding-left: 20px;
+            max-width: 800px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        <a href="#home" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+        <a href="#analytics" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Analytics</a>
+        <a href="#visualizations" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Visualizations</a>
+    </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a href="#home" class="w3-bar-item w3-button w3-padding-large">Home</a>
+        <a href="#analytics" class="w3-bar-item w3-button w3-padding-large">Analytics</a>
+        <a href="#visualizations" class="w3-bar-item w3-button w3-padding-large">Visualizations</a>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-red w3-center" style="padding:128px 16px" id="home">
+    <h1 class="w3-margin w3-jumbo">S&P 500 Dashboard</h1>
+    <p class="w3-xlarge">Track the performance and insights</p>
+    <a href="#analytics" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Explore Analytics</a>
+</header>
+
+<!-- Analytics Summary -->
+<div class="w3-container w3-padding-64 w3-center" id="analytics">
+    <h2 class="w3-wide">Analytics Summary</h2>
+    <p class="w3-opacity"><i>Key metrics of S&P 500 performance</i></p>
+    <div class="w3-row">
+        <div class="w3-col m6 w3-padding-large">
+            <p>Average Annual Returns: <span id="average-returns">Loading...</span>%</p>
+            <p>Annual Growth Rate (CAGR): <span id="cagr">Loading...</span>%</p>
+        </div>
+        <div class="w3-col m6 w3-padding-large">
+            <p>Maximum Drawdown: <span id="max-drawdown">Loading...</span>%</p>
+            <p>Average Maximum Loss by Year: <span id="avg-loss">Loading...</span>%</p>
+        </div>
+    </div>
+</div>
+
+<!-- Visualizations -->
+<div class="w3-container w3-light-grey w3-padding-64" id="visualizations">
+    <h2 class="w3-wide w3-center">Visualizations</h2>
+    <p class="w3-opacity w3-center"><i>Interactive charts of S&P 500 trends</i></p>
+
+    <div class="chart-container">
+        <canvas id="cumulativeReturnsChart" class="chart"></canvas>
+        <div class="chart-description">
+            <h3>Cumulative Returns</h3>
+            <p>This chart displays the cumulative growth of $1 invested in the S&P 500 over time. Hover over the chart to see specific values.</p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="annualReturnsChart" class="chart"></canvas>
+        <div class="chart-description">
+            <h3>Annual Returns</h3>
+            <p>This chart shows the annual percentage returns of the S&P 500. Hover over the bars to view the exact return for each year.</p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="drawdownsChart" class="chart"></canvas>
+        <div class="chart-description">
+            <h3>Drawdowns Over Time</h3>
+            <p>This chart highlights the maximum drawdowns experienced by the S&P 500. Hover over the line to see specific drawdown percentages.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+    <div class="w3-xlarge w3-padding-32">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/" target="_blank">w3.css</a></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Example: Populate analytics summary from a JSON or API
+const analytics = {
+    "averageReturns": 8.52,
+    "cagr": 9.23,
+    "maxDrawdown": -37.2,
+    "avgLoss": -15.4
+};
+
+document.getElementById('average-returns').innerText = analytics.averageReturns;
+document.getElementById('cagr').innerText = analytics.cagr;
+document.getElementById('max-drawdown').innerText = analytics.maxDrawdown;
+document.getElementById('avg-loss').innerText = analytics.avgLoss;
+
+// Sample data for charts
+const labels = ["2020", "2021", "2022", "2023"];
+const dataCumulative = [100, 120, 140, 150];
+const dataAnnual = [10, 15, -5, 20];
+const dataDrawdowns = [0, -10, -20, -5];
+
+// Cumulative Returns Chart
+new Chart(document.getElementById('cumulativeReturnsChart'), {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Cumulative Returns',
+            data: dataCumulative,
+            borderColor: 'blue',
+            fill: false
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return `$${context.raw}`;
+                    }
+                }
+            }
+        },
+        scales: {
+            x: { title: { display: true, text: 'Year' } },
+            y: { title: { display: true, text: 'Value ($)' } }
+        }
+    }
+});
+
+// Annual Returns Chart
+new Chart(document.getElementById('annualReturnsChart'), {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Annual Returns (%)',
+            data: dataAnnual,
+            backgroundColor: 'skyblue'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return `${context.raw}%`;
+                    }
+                }
+            }
+        },
+        scales: {
+            x: { title: { display: true, text: 'Year' } },
+            y: { title: { display: true, text: 'Return (%)' } }
+        }
+    }
+});
+
+// Drawdowns Chart
+new Chart(document.getElementById('drawdownsChart'), {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Drawdowns (%)',
+            data: dataDrawdowns,
+            borderColor: 'red',
+            fill: false
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return `${context.raw}%`;
+                    }
+                }
+            }
+        },
+        scales: {
+            x: { title: { display: true, text: 'Year' } },
+            y: { title: { display: true, text: 'Drawdown (%)' } }
+        }
+    }
+});
+</script>
+
+</body>
+</html>
