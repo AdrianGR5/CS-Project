@@ -63,12 +63,12 @@
     <p class="w3-opacity"><i>Key metrics of S&P 500 performance</i></p>
     <div class="w3-row">
         <div class="w3-col m6 w3-padding-large">
-            <p>Average Annual Returns: <span id="average-returns">Loading...</span>%</p>
-            <p>Annual Growth Rate (CAGR): <span id="cagr">Loading...</span>%</p>
+            <p>Average Annual Returns: <span id="average-returns"></span>%</p>
+            <p>Annual Growth Rate (CAGR): <span id="cagr"></span>%</p>
         </div>
         <div class="w3-col m6 w3-padding-large">
-            <p>Maximum Drawdown: <span id="max-drawdown">Loading...</span>%</p>
-            <p>Average Maximum Loss by Year: <span id="avg-loss">Loading...</span>%</p>
+            <p>Maximum Drawdown: <span id="max-drawdown"></span>%</p>
+            <p>Average Maximum Loss by Year: <span id="avg-loss"></span>%</p>
         </div>
     </div>
 </div>
@@ -80,9 +80,10 @@
 
     <div class="chart-container">
         <canvas id="cumulativeReturnsChart" class="chart"></canvas>
+        
         <div class="chart-description">
             <h3>Cumulative Returns</h3>
-            <p>This chart displays the cumulative growth of $1 invested in the S&P 500 over time. Hover over the chart to see specific values.</p>
+            <p>This chart displays the cumulative growth of $1 invested in the S&P 500 over time. Cumulative return is a measure of the total change in the value of an investment over a specific period.</p>
         </div>
     </div>
 
@@ -90,7 +91,8 @@
         <canvas id="annualReturnsChart" class="chart"></canvas>
         <div class="chart-description">
             <h3>Annual Returns</h3>
-            <p>This chart shows the annual percentage returns of the S&P 500. Hover over the bars to view the exact return for each year.</p>
+            <p>This chart shows the annual percentage returns of the S&P 500. 
+                Annual return measures the average percentage change in an investment's value per year over a specific period.</p>
         </div>
     </div>
 
@@ -98,7 +100,7 @@
         <canvas id="drawdownsChart" class="chart"></canvas>
         <div class="chart-description">
             <h3>Drawdowns Over Time</h3>
-            <p>This chart highlights the maximum drawdowns experienced by the S&P 500. Hover over the line to see specific drawdown percentages.</p>
+            <p>This chart highlights the maximum drawdowns experienced by the S&P 500. Drawdowns measure the decline from a portfolio's peak value to its lowest point during a specific period, expressed as a percentage.</p>
         </div>
     </div>
 </div>
