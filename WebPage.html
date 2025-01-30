@@ -78,30 +78,36 @@
     <h2 class="w3-wide w3-center">Visualizations</h2>
     <p class="w3-opacity w3-center"><i>Interactive charts of S&P 500 trends</i></p>
 
-    <div class="chart-container">
-        <canvas id="cumulativeReturnsChart" class="chart"></canvas>
-        
-        <div class="chart-description">
-            <h3>Cumulative Returns</h3>
-            <p>This chart displays the cumulative growth of $1 invested in the S&P 500 over time. Cumulative return is a measure of the total change in the value of an investment over a specific period.</p>
-        </div>
+ <!-- Cumulative Returns Chart -->
+<div class="chart-container">
+    <div>
+        <iframe src="cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
     </div>
-
-    <div class="chart-container">
-        <canvas id="annualReturnsChart" class="chart"></canvas>
-        <div class="chart-description">
-            <h3>Annual Returns</h3>
-            <p>This chart shows the annual percentage returns of the S&P 500. 
-                Annual return measures the average percentage change in an investment's value per year over a specific period.</p>
-        </div>
+    <div class="chart-description">
+        <h3>Cumulative Returns</h3>
+        <p>This chart displays the cumulative growth of $1 invested in the S&P 500 over time. Cumulative return is a measure of the total change in the value of an investment over a specific period.</p>
     </div>
+</div>
 
-    <div class="chart-container">
-        <canvas id="drawdownsChart" class="chart"></canvas>
-        <div class="chart-description">
-            <h3>Drawdowns Over Time</h3>
-            <p>This chart highlights the maximum drawdowns experienced by the S&P 500. Drawdowns measure the decline from a portfolio's peak value to its lowest point during a specific period, expressed as a percentage.</p>
-        </div>
+<!-- Annual Returns Chart -->
+<div class="chart-container">
+    <div>
+        <iframe src="annual_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+    </div>
+    <div class="chart-description">
+        <h3>Annual Returns</h3>
+        <p>This chart shows the annual percentage returns of the S&P 500. Annual return measures the average percentage change in an investment's value per year over a specific period.</p>
+    </div>
+</div>
+
+<!-- Drawdowns Chart -->
+<div class="chart-container">
+    <div>
+        <iframe src="drawdowns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+    </div>
+    <div class="chart-description">
+        <h3>Drawdowns Over Time</h3>
+        <p>This chart highlights the maximum drawdowns experienced by the S&P 500. Drawdowns measure the decline from a portfolio's peak value to its lowest point during a specific period, expressed as a percentage.</p>
     </div>
 </div>
 
