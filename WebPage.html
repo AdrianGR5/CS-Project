@@ -12,21 +12,73 @@
         body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
         .fa-chart-line {font-size:200px}
+
+        /* Custom style for chart containers */
         .chart-container {
             display: flex;
-            align-items: flex-start;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
             margin-bottom: 30px;
-            flex-wrap: wrap;
+            padding: 0 20px; /* Consistent padding on left and right */
+            text-align: center; /* Center text */
         }
         .chart {
             width: 100%;
             max-width: 800px;
             height: 400px;
+            margin: 20px auto; /* Add margin to separate text and chart */
         }
         .chart-description {
-            flex: 1;
-            padding-left: 20px;
             max-width: 800px;
+            margin-bottom: 20px; /* Add margin below the text */
+        }
+
+        /* Custom style for active tab text background */
+        .w3-bar .active-tab {
+            background-color: white;
+            color: black;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        /* Custom style for analytics boxes */
+        .analytics-box {
+            padding: 16px;
+            text-align: center;
+            margin: 10px;
+            border-radius: 8px;
+            background-color: #f1f1f1;
+            width: 250px; /* Increased width to fit text in one line */
+            height: 120px; /* Fixed height for all boxes */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+        }
+        .analytics-box h4 {
+            font-size: 14px;
+            margin: 0;
+            color: #666;
+            white-space: nowrap; /* Prevent text from wrapping to the next line */
+        }
+        .analytics-box p {
+            font-size: 24px;
+            margin: 8px 0 0;
+            font-weight: bold;
+            color: #333;
+            white-space: nowrap; /* Prevent text from wrapping to the next line */
+        }
+
+        /* Custom layout for analytics boxes */
+        .analytics-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between left and right columns */
+        }
+        .analytics-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Space between boxes in the same column */
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -37,16 +89,20 @@
 <div class="w3-top">
     <div class="w3-bar w3-red w3-card w3-left-align w3-large">
         <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-        <a href="#home" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-        <a href="#analytics" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Analytics</a>
-        <a href="#visualizations" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Visualizations</a>
+        <!-- Add the active-tab class to the Home tab -->
+        <a href="#home" class="w3-bar-item w3-button w3-padding-large active-tab">Home</a>
+        <a href="#analytics" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Analytics</a>
+        <a href="#visualizations" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Visualizations</a>
+        <a href="Bitcoin/compare.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Compare</a>
     </div>
 
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="#home" class="w3-bar-item w3-button w3-padding-large">Home</a>
+        <!-- Add the active-tab class to the Home tab for small screens -->
+        <a href="#home" class="w3-bar-item w3-button w3-padding-large active-tab">Home</a>
         <a href="#analytics" class="w3-bar-item w3-button w3-padding-large">Analytics</a>
         <a href="#visualizations" class="w3-bar-item w3-button w3-padding-large">Visualizations</a>
+        <a href="Bitcoin/compare.html" class="w3-bar-item w3-button w3-padding-large">Compare</a>
     </div>
 </div>
 
@@ -61,14 +117,32 @@
 <div class="w3-container w3-padding-64 w3-center" id="analytics">
     <h2 class="w3-wide">Analytics Summary</h2>
     <p class="w3-opacity"><i>Key metrics of S&P 500 performance</i></p>
-    <div class="w3-row">
-        <div class="w3-col m6 w3-padding-large">
-            <p>Average Annual Returns: <span id="average-returns"></span>%</p>
-            <p>Annual Growth Rate (CAGR): <span id="cagr"></span>%</p>
+    <div class="analytics-container">
+        <!-- Left Column -->
+        <div class="analytics-column">
+            <!-- Box for Average Annual Returns -->
+            <div class="analytics-box">
+                <h4>Average Annual Returns</h4>
+                <p id="average-returns">8.52%</p>
+            </div>
+            <!-- Box for Annual Growth Rate (CAGR) -->
+            <div class="analytics-box">
+                <h4>Annual Growth Rate (CAGR)</h4>
+                <p id="cagr">9.23%</p>
+            </div>
         </div>
-        <div class="w3-col m6 w3-padding-large">
-            <p>Maximum Drawdown: <span id="max-drawdown"></span>%</p>
-            <p>Average Maximum Loss by Year: <span id="avg-loss"></span>%</p>
+        <!-- Right Column -->
+        <div class="analytics-column">
+            <!-- Box for Maximum Drawdown -->
+            <div class="analytics-box">
+                <h4>Maximum Drawdown</h4>
+                <p id="max-drawdown">-37.2%</p>
+            </div>
+            <!-- Box for Average Maximum Loss by Year -->
+            <div class="analytics-box">
+                <h4>Average Maximum Drawdown by Year</h4>
+                <p id="avg-loss">-15.4%</p>
+            </div>
         </div>
     </div>
 </div>
@@ -78,36 +152,37 @@
     <h2 class="w3-wide w3-center">Visualizations</h2>
     <p class="w3-opacity w3-center"><i>Interactive charts of S&P 500 trends</i></p>
 
- <!-- Cumulative Returns Chart -->
-<div class="chart-container">
-    <div>
-        <iframe src="cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+    <!-- Cumulative Returns Chart -->
+    <div class="chart-container">
+        <div class="chart-description">
+            <h3>Cumulative Returns</h3>
+            <p>This chart displays the cumulative growth of $1 invested in the S&P 500 over time. Cumulative return is a measure of the total change in the value of an investment over a specific period.</p>
+        </div>
+        <div>
+            <iframe src="cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+        </div>
     </div>
-    <div class="chart-description">
-        <h3>Cumulative Returns</h3>
-        <p>This chart displays the cumulative growth of $1 invested in the S&P 500 over time. Cumulative return is a measure of the total change in the value of an investment over a specific period.</p>
-    </div>
-</div>
 
-<!-- Annual Returns Chart -->
-<div class="chart-container">
-    <div>
-        <iframe src="annual_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+    <!-- Annual Returns Chart -->
+    <div class="chart-container">
+        <div class="chart-description">
+            <h3>Annual Returns</h3>
+            <p>This chart shows the annual percentage returns of the S&P 500. Annual return measures the average percentage change in an investment's value per year over a specific period.</p>
+        </div>
+        <div>
+            <iframe src="annual_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+        </div>
     </div>
-    <div class="chart-description">
-        <h3>Annual Returns</h3>
-        <p>This chart shows the annual percentage returns of the S&P 500. Annual return measures the average percentage change in an investment's value per year over a specific period.</p>
-    </div>
-</div>
 
-<!-- Drawdowns Chart -->
-<div class="chart-container">
-    <div>
-        <iframe src="drawdowns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
-    </div>
-    <div class="chart-description">
-        <h3>Drawdowns Over Time</h3>
-        <p>This chart highlights the maximum drawdowns experienced by the S&P 500. Drawdowns measure the decline from a portfolio's peak value to its lowest point during a specific period, expressed as a percentage.</p>
+    <!-- Drawdowns Chart -->
+    <div class="chart-container">
+        <div class="chart-description">
+            <h3>Drawdowns Over Time</h3>
+            <p>This chart highlights the maximum drawdowns experienced by the S&P 500. Drawdowns measure the decline from a portfolio's peak value to its lowest point during a specific period, expressed as a percentage.</p>
+        </div>
+        <div>
+            <iframe src="drawdowns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+        </div>
     </div>
 </div>
 
@@ -132,14 +207,10 @@ const analytics = {
     "avgLoss": -15.4
 };
 
-document.getElementById('average-returns').innerText = analytics.averageReturns;
-document.getElementById('cagr').innerText = analytics.cagr;
-document.getElementById('max-drawdown').innerText = analytics.maxDrawdown;
-document.getElementById('avg-loss').innerText = analytics.avgLoss;
-
-
-
-
+document.getElementById('average-returns').innerText = analytics.averageReturns + "%";
+document.getElementById('cagr').innerText = analytics.cagr + "%";
+document.getElementById('max-drawdown').innerText = analytics.maxDrawdown + "%";
+document.getElementById('avg-loss').innerText = analytics.avgLoss + "%";
 </script>
 
 </body>
