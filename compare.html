@@ -13,12 +13,72 @@
         .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
         .fa-chart-line {font-size:200px}
 
+        /* Custom style for chart containers */
+        .chart-container {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            margin-bottom: 30px;
+            padding: 0 20px; /* Consistent padding on left and right */
+            text-align: center; /* Center text */
+        }
+        .chart {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin: 20px auto; /* Add margin to separate text and chart */
+        }
+        .chart-description {
+            max-width: 800px;
+            margin-bottom: 20px; /* Add margin below the text */
+        }
+
         /* Custom style for active tab text background */
         .w3-bar .active-tab {
             background-color: white;
             color: black;
             padding: 8px 16px;
             border-radius: 4px;
+        }
+
+        /* Custom style for analytics boxes */
+        .analytics-box {
+            padding: 16px;
+            text-align: center;
+            margin: 10px;
+            border-radius: 8px;
+            background-color: #f1f1f1;
+            width: 250px; /* Increased width to fit text in one line */
+            height: 120px; /* Fixed height for all boxes */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+        }
+        .analytics-box h4 {
+            font-size: 14px;
+            margin: 0;
+            color: #666;
+            white-space: nowrap; /* Prevent text from wrapping to the next line */
+        }
+        .analytics-box p {
+            font-size: 24px;
+            margin: 8px 0 0;
+            font-weight: bold;
+            color: #333;
+            white-space: nowrap; /* Prevent text from wrapping to the next line */
+        }
+
+        /* Custom layout for analytics boxes */
+        .analytics-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between left and right columns */
+        }
+        .analytics-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Space between boxes in the same column */
         }
     </style>
 </head>
@@ -63,6 +123,97 @@
         </div>
     </div>
 </div>
+
+
+
+
+<!-- S&P 500 Analytics Summary -->
+<div class="w3-container w3-padding-64 w3-center" id="analytics">
+    <p class="w3-opacity"><i>Key metrics of S&P 500 performance</i></p>
+    <div class="analytics-container">
+        <!-- Left Column -->
+        <div class="analytics-column">
+            <!-- Box for Average Annual Returns -->
+            <div class="analytics-box">
+                <h4>Average Annual Returns</h4>
+                <p id="average-returns">8.52%</p>
+            </div>
+            <!-- Box for Annual Growth Rate (CAGR) -->
+            <div class="analytics-box">
+                <h4>Annual Growth Rate (CAGR)</h4>
+                <p id="cagr">9.23%</p>
+            </div>
+        </div>
+        <!-- Right Column -->
+        <div class="analytics-column">
+            <!-- Box for Maximum Drawdown -->
+            <div class="analytics-box">
+                <h4>Maximum Drawdown</h4>
+                <p id="max-drawdown">-37.2%</p>
+            </div>
+            <!-- Box for Average Maximum Loss by Year -->
+            <div class="analytics-box">
+                <h4>Average Maximum Drawdown by Year</h4>
+                <p id="avg-loss">-15.4%</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bitcoin  Analytics Summary -->
+<div class="w3-container w3-padding-64 w3-center" id="analytics">
+    <p class="w3-opacity"><i>Key metrics of Bitcoin performance</i></p>
+    <div class="analytics-container">
+        <!-- Left Column -->
+        <div class="analytics-column">
+            <!-- Box for Average Annual Returns -->
+            <div class="analytics-box">
+                <h4>Average Annual Returns</h4>
+                <p id="average-returns">%</p>
+            </div>
+            <!-- Box for Annual Growth Rate (CAGR) -->
+            <div class="analytics-box">
+                <h4>Annual Growth Rate (CAGR)</h4>
+                <p id="cagr">%</p>
+            </div>
+        </div>
+        <!-- Right Column -->
+        <div class="analytics-column">
+            <!-- Box for Maximum Drawdown -->
+            <div class="analytics-box">
+                <h4>Maximum Drawdown</h4>
+                <p id="max-drawdown">%</p>
+            </div>
+            <!-- Box for Average Maximum Loss by Year -->
+            <div class="analytics-box">
+                <h4>Average Maximum Drawdown by Year</h4>
+                <p id="avg-loss">%</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-opacity">  

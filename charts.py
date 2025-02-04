@@ -47,7 +47,7 @@ cumulative_returns_fig.add_trace(go.Scatter(
     line=dict(color='blue')
 ))
 cumulative_returns_fig.update_layout(
-    title='Cumulative Returns',
+    title='',
     xaxis_title='Date',
     yaxis_title='Growth of $1',
     hovermode='x unified',
@@ -70,7 +70,7 @@ years = annual_returns.index.astype(str)
 tick_values = [year for year in years if int(year) % 10 == 0 and int(year) >= 1930]  # Filter years
 
 annual_returns_fig.update_layout(
-    title='Annual Returns',
+    title='',
     xaxis_title='Year',
     yaxis_title='Return (%)',
     hovermode='x unified',
@@ -96,7 +96,7 @@ drawdowns_fig.add_trace(go.Scatter(
     line=dict(color='red')
 ))
 drawdowns_fig.update_layout(
-    title='Drawdowns Over Time',
+    title='',
     xaxis_title='Date',
     yaxis_title='Drawdown (%)',
     hovermode='x unified',
