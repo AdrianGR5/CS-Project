@@ -58,15 +58,19 @@ cumulative_returns_fig.update_layout(
 )
 pio.write_html(cumulative_returns_fig, file='cumulative_returns_chart.html')
 
+
 # 2. Annual Returns Chart
 annual_returns_fig = go.Figure()
+
+# Add bars with conditional coloring
 annual_returns_fig.add_trace(go.Bar(
     x=annual_returns.index.astype(str),
     y=annual_returns.values,
     name='Annual Returns',
-    marker_color='skyblue'
+    marker_color=['green' if val >= 0 else 'red' for val in annual_returns.values]  # Conditional coloring
 ))
-years = annual_returns.index.astype(str) 
+
+years = annual_returns.index.astype(str)
 tick_values = [year for year in years if int(year) % 10 == 0 and int(year) >= 1930]  # Filter years
 
 annual_returns_fig.update_layout(
@@ -74,16 +78,17 @@ annual_returns_fig.update_layout(
     xaxis_title='Year',
     yaxis_title='Return (%)',
     hovermode='x unified',
-    width=800,  
-    height=400,  
-    margin=dict(l=20, r=20, t=40, b=20),  
-    autosize=False,  
+    width=800,
+    height=400,
+    margin=dict(l=20, r=20, t=40, b=20),
+    autosize=False,
     xaxis=dict(
-        tickmode='array',  
-        tickvals=tick_values,  
-        ticktext=tick_values 
+        tickmode='array',
+        tickvals=tick_values,
+        ticktext=tick_values
     )
 )
+
 pio.write_html(annual_returns_fig, file='annual_returns_chart.html')
 
 # 3. Drawdowns Chart

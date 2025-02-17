@@ -57,7 +57,7 @@ cumulative_returns_fig.update_layout(
     margin=dict(l=20, r=20, t=40, b=20), # Reduce margins
     autosize=False
 )
-pio.write_html(cumulative_returns_fig, file='cumulative_returns_chart.html')
+pio.write_html(cumulative_returns_fig, file='bitcoin_cumulative_returns_chart.html')
 
 # 2. Annual Returns Chart
 annual_returns_fig = go.Figure()
@@ -85,7 +85,7 @@ annual_returns_fig.update_layout(
         ticktext=tick_values 
     )
 )
-pio.write_html(annual_returns_fig, file='annual_returns_chart.html')
+pio.write_html(annual_returns_fig, file='bitcoin_annual_returns_chart.html')
 
 # 3. Drawdowns Chart
 drawdowns_fig = go.Figure()
@@ -106,4 +106,4 @@ drawdowns_fig.update_layout(
     margin=dict(l=20, r=20, t=40, b=20),  
     autosize=False  
 )
-pio.write_html(drawdowns_fig, file='drawdowns_chart.html')
+pio.write_html(drawdowns_fig, file='bitcoin_drawdowns_chart.html')
