@@ -13,24 +13,23 @@
         .fa-chart-line {font-size:200px}
 
         .w3-red{
-            background-color: #437A93 !important;; 
-
+            background-color: #437A93 !important;;
         }
 
         /* Custom style for chart containers */
         .chart-container {
             display: flex;
-            flex-direction: column; 
-            align-items: center; 
+            flex-direction: column;
+            align-items: center;
             margin-bottom: 30px;
-            padding: 0 20px; 
+            padding: 0 20px;
             text-align: center; /* Center text */
         }
         .chart {
             width: 100%;
             max-width: 800px;
             height: 400px;
-            margin: 20px auto; /
+            margin: 20px auto;
         }
         .chart-description {
             max-width: 800px;
@@ -156,25 +155,40 @@
     <h2 class="w3-wide w3-center">Visualizations</h2>
     <p class="w3-opacity w3-center"><i>Interactive charts of S&P 500 trends</i></p>
 
+    <!-- Event Filter Dropdown -->
+    <div class="w3-center" style="margin-bottom: 20px;">
+        <label for="event-filter">Select Historical Event:</label>
+        <select id="event-filter" onchange="filterEvent(this.value)">
+            <option value="">-- Select an Event --</option>
+            <option value="COVID-19">COVID-19</option>
+            <option value="2008 Financial Crisis">2008 Financial Crisis</option>
+            <option value="US Election 2020">US Election 2020</option>
+            <option value="Dot-com Bubble">Dot-com Bubble</option>
+            <option value="9/11 Attacks">9/11 Attacks</option>
+            <option value="Gulf War">Gulf War</option>
+        </select>
+    </div>
+    
+
     <!-- Cumulative Returns Chart -->
     <div class="chart-container">
         <div class="chart-description">
-            <h3>Cumulative Returns</h3>
-            <p>This chart displays the cumulative growth of $1 invested in the S&P 500 over time. Cumulative return is a measure of the total change in the value of an investment over a specific period.</p>
+            <h3>Cumulative Return</h3>
+            <p>This chart displays the cumulative growth of $1 invested in the S&P 500 over time.</p>
         </div>
         <div>
-            <iframe src="cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+            <iframe id="cumulative-returns-iframe" src="cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
         </div>
     </div>
 
     <!-- Annual Returns Chart -->
     <div class="chart-container">
         <div class="chart-description">
-            <h3>Annual Returns</h3>
-            <p>This chart shows the annual percentage returns of the S&P 500. Annual return measures the average percentage change in an investment's value per year over a specific period.</p>
+            <h3>Annual Return</h3>
+            <p>This chart shows the annual percentage returns of the S&P 500.</p>
         </div>
         <div>
-            <iframe src="annual_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+            <iframe id="annual-returns-iframe" src="annual_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
         </div>
     </div>
 
@@ -182,35 +196,46 @@
     <div class="chart-container">
         <div class="chart-description">
             <h3>Drawdowns Over Time</h3>
-            <p>This chart highlights the maximum drawdowns experienced by the S&P 500. Drawdowns measure the decline from a portfolio's peak value to its lowest point during a specific period, expressed as a percentage.</p>
+            <p>This chart highlights the maximum drawdowns experienced by the S&P 500.</p>
         </div>
         <div>
-            <iframe src="drawdowns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+            <iframe id="drawdowns-iframe" src="drawdowns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
         </div>
     </div>
 </div>
 
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-opacity">
-   
     <p>Powered by <a href="https://www.w3schools.com/w3css/" target="_blank">w3.css</a></p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- JavaScript to handle event filtering -->
 <script>
-// Example: Populate analytics summary from a JSON or API
-const analytics = {
-    "averageReturns": 8.52,
-    "cagr": 9.23,
-    "maxDrawdown": -37.2,
-    "avgLoss": -15.4
-};
-
-document.getElementById('average-returns').innerText = analytics.averageReturns + "%";
-document.getElementById('cagr').innerText = analytics.cagr + "%";
-document.getElementById('max-drawdown').innerText = analytics.maxDrawdown + "%";
-document.getElementById('avg-loss').innerText = analytics.avgLoss + "%";
-</script>
+    function filterEvent(event) {
+        // Get the iframes for the charts
+        const cumulativeReturnsIframe = document.getElementById('cumulative-returns-iframe');
+        const annualReturnsIframe = document.getElementById('annual-returns-iframe');
+        const drawdownsIframe = document.getElementById('drawdowns-iframe');
+    
+        // Define the base filenames for the charts
+        const baseCumulativeReturns = 'cumulative_returns_';
+        const baseDrawdowns = 'drawdowns_';
+    
+        // If no event is selected, load the default charts
+        if (!event) {
+            cumulativeReturnsIframe.src = 'cumulative_returns_chart.html';
+            drawdownsIframe.src = 'drawdowns_chart.html';
+        } else {
+            // Sanitize the event name to match the filenames
+            const sanitizedEvent = event.replace(/[^a-zA-Z0-9_]/g, '_');
+            cumulativeReturnsIframe.src = `${baseCumulativeReturns}${sanitizedEvent}.html`;
+            drawdownsIframe.src = `${baseDrawdowns}${sanitizedEvent}.html`;
+        }
+    
+        // Always load the default Annual Returns chart
+        annualReturnsIframe.src = 'annual_returns_chart.html';
+    }
+    </script>
 
 </body>
 </html>

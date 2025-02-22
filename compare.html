@@ -12,10 +12,8 @@
         .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
         .fa-chart-line {font-size:200px}
 
-
         .w3-red{
             background-color: #437A93 !important;; 
-
         }
 
         /* Custom style for chart containers */
@@ -86,6 +84,10 @@
             gap: 15px; /* Reduced gap between boxes in the same column */
         }
 
+        .title_column{
+            margin-bottom: -15px;
+        }
+
         /* Reduce space between sections */
         .w3-container.w3-padding-64.w3-center {
             padding-top: 32px !important; /* Reduced padding */
@@ -97,7 +99,9 @@
             margin-bottom: 8px; /* Reduced margin below the heading */
         }
         .w3-container.w3-padding-64.w3-center p.w3-opacity {
-            margin-top: 0; /* Remove margin above the "Key metrics" text */
+            margin-top: 8pxpx; /* Remove margin above the "Key metrics" text */
+            margin-bottom: -50px;
+            padding-bottom: 0px;
         }
     </style>
 </head>
@@ -130,25 +134,25 @@
 <header class="w3-container w3-red w3-center" style="padding:64px 16px">
     <h1 class="w3-margin w3-jumbo">S&P 500 vs Bitcoin</h1>
     <p class="w3-xlarge">Examination Number: 247070</p>
+    <a href="#analytics" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Explore Analytics</a>
 </header>
-
-<!-- Main Content -->
-<div class="w3-container w3-padding-64 w3-center">
-    <h2 class="w3-wide">Comparison of Analytics</h2>
-    <p class="w3-opacity"><i>Key metrics of S&P 500 and Bitcoin performance</i></p>
-    <div class="w3-row">
-        <div class="w3-col m6 w3-padding-large">
-            <p></p>
-        </div>
-    </div>
-</div>
 
 <!-- Analytics Summary -->
 <div class="w3-container w3-padding-64 w3-center" id="analytics">
+    <div class="w3-container w3-padding-64 w3-center">
+        <h2 class="w3-wide">Comparison of Analytics</h2>
+        <p class="w3-opacity"><i>Key metrics of S&P 500 and Bitcoin performance</i></p>
+        <div class="w3-row">
+            <div class="w3-col m6 w3-padding-large">
+                <p></p>
+            </div>
+        </div>
+    </div>
+    
     <div class="analytics-container">
         <!-- S&P 500 Column (Left) -->
         <div class="analytics-column">
-            <h3>S&P 500</h3>
+            <h3 class="title_column">S&P 500</h3>
             <!-- Box for Average Annual Returns -->
             <div class="analytics-box">
                 <h4>Average Annual Returns</h4>
@@ -173,7 +177,7 @@
 
         <!-- Bitcoin Column (Right) -->
         <div class="analytics-column">
-            <h3>Bitcoin</h3>
+            <h3 class="title_column">Bitcoin</h3>
             <!-- Box for Average Annual Returns -->
             <div class="analytics-box">
                 <h4>Average Annual Returns</h4>
@@ -198,11 +202,21 @@
     </div>
 </div>
 
+<!-- Visualizations -->
+<div class="w3-container w3-light-grey w3-padding-64" id="visualizations">
+    <h2 class="w3-wide w3-center">Cumulative Returns</h2>
+    <p class="w3-opacity w3-center"><i>This chart displays the cumulative growth of $1 invested in both Bitcoin and the S&P 500 over time.</i></p>
 
+    <!-- Cumulative Returns Chart -->
+    <div class="chart-container">
+        <div class="chart-description">
+            <iframe src="bitcoin_cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+        </div>
+    </div>
+</div>
 
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-opacity">
- 
     <p>Powered by <a href="https://www.w3schools.com/w3css/" target="_blank">w3.css</a></p>
 </footer>
 

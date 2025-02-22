@@ -48,8 +48,7 @@ cumulative_returns_fig.add_trace(go.Scatter(
     line=dict(color='blue')
 ))
 cumulative_returns_fig.update_layout(
-    title='Cumulative Returns',
-    xaxis_title='Date',
+    xaxis_title='Year',
     yaxis_title='Growth of $1',
     hovermode='x unified',
     width=800,  

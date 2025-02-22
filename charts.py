@@ -2,112 +2,92 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 import plotly.io as pio
+import re
 
 # Load data
 file_path = 'CleanHistoricalDataSP500.csv'
 data = pd.read_csv(file_path)
 
-# Date column to datetime format
+# Convert Date column to datetime
 data['Date'] = pd.to_datetime(data['Date'], format='%Y-%m-%d')
 data.sort_values(by='Date', inplace=True)
 data.set_index('Date', inplace=True)
 
-# Daily Returns
+# Calculate returns and drawdowns
 data['Daily Return'] = data['Close'].pct_change() * 100
-
-# Cumulative Returns
 data['Cumulative Return'] = (1 + data['Daily Return'] / 100).cumprod()
 
-# Annual Returns
 data['Year'] = data.index.to_period('Y')
 annual_returns = data.groupby('Year')['Close'].apply(lambda x: (x.iloc[-1] / x.iloc[0] - 1) * 100)
 
-# Maximum Drawdowns
 running_max = data['Close'].cummax()
 drawdowns = (data['Close'] / running_max - 1) * 100
 
-# Round percentages to 2 decimal places
-data['Daily Return'] = data['Daily Return'].round(2)
-data['Cumulative Return'] = data['Cumulative Return'].round(2)
-annual_returns = annual_returns.round(2)
-drawdowns = drawdowns.round(2)
+# Define historical events
+events = {
+    "COVID-19": ("2020-02-01", "2020-06-01"),
+    "2008 Financial Crisis": ("2008-09-01", "2009-06-01"),
+    "US Election 2020": ("2020-10-01", "2020-12-01"),
+    "Dot-com Bubble": ("2000-03-01", "2002-10-01"),
+    "9/11 Attacks": ("2001-09-11", "2001-12-31"),
+    "Gulf War": ("1990-08-01", "1991-02-28")
+}
 
+# Function to sanitize filenames
+def sanitize_filename(event_name):
+    return re.sub(r'[^a-zA-Z0-9_]', '_', event_name)
 
-
-
-#Interactive charts with Plotly
-
-# 1. Cumulative Returns Chart
-cumulative_returns_fig = go.Figure()
-cumulative_returns_fig.add_trace(go.Scatter(
-    x=data.index,
-    y=data['Cumulative Return'],
-    mode='lines',
-    name='Cumulative Returns',
-    line=dict(color='blue')
-))
-cumulative_returns_fig.update_layout(
-    title='',
-    xaxis_title='Date',
-    yaxis_title='Growth of $1',
-    hovermode='x unified',
-    width=800,  
-    height=400,  
-    margin=dict(l=20, r=20, t=40, b=20), # Reduce margins
-    autosize=False
-)
-pio.write_html(cumulative_returns_fig, file='cumulative_returns_chart.html')
-
-
-# 2. Annual Returns Chart
-annual_returns_fig = go.Figure()
-
-# Add bars with conditional coloring
-annual_returns_fig.add_trace(go.Bar(
-    x=annual_returns.index.astype(str),
-    y=annual_returns.values,
-    name='Annual Returns',
-    marker_color=['green' if val >= 0 else 'red' for val in annual_returns.values]  # Conditional coloring
-))
-
-years = annual_returns.index.astype(str)
-tick_values = [year for year in years if int(year) % 10 == 0 and int(year) >= 1930]  # Filter years
-
-annual_returns_fig.update_layout(
-    title='',
-    xaxis_title='Year',
-    yaxis_title='Return (%)',
-    hovermode='x unified',
-    width=800,
-    height=400,
-    margin=dict(l=20, r=20, t=40, b=20),
-    autosize=False,
-    xaxis=dict(
-        tickmode='array',
-        tickvals=tick_values,
-        ticktext=tick_values
+# Function to create charts with event highlighting
+def create_chart_with_event(event_name, event_range, y_data, title, filename, chart_type='line'):
+    fig = go.Figure()
+    
+    if chart_type == 'line':
+        fig.add_trace(go.Scatter(
+            x=data.index, y=y_data,
+            mode='lines', name=title,
+            line=dict(color='blue')
+        ))
+    elif chart_type == 'bar':
+        fig.add_trace(go.Bar(
+            x=annual_returns.index.astype(str),
+            y=annual_returns.values,
+            name=title,
+            marker_color=['green' if val >= 0 else 'red' for val in annual_returns.values]
+        ))
+    
+    # Only add the highlighted area if an event range is provided
+    if event_range[0] and event_range[1]:
+        fig.add_vrect(
+            x0=event_range[0], x1=event_range[1],
+            fillcolor='rgba(255,0,0,0.2)', layer='below',
+            line_width=0
+        )
+    
+    fig.update_layout(
+        title=f'{title} - {event_name}' if event_name else title,
+        xaxis_title='Year',
+        yaxis_title=title,
+        hovermode='x unified',
+        width=800,
+        height=400,
+        margin=dict(l=20, r=20, t=40, b=20),
+        autosize=False
     )
-)
+    pio.write_html(fig, file=filename)
 
-pio.write_html(annual_returns_fig, file='annual_returns_chart.html')
+# Generate event-highlighted charts
+for event, date_range in events.items():
+    safe_event = sanitize_filename(event)
+    create_chart_with_event(event, date_range, data['Cumulative Return'], 'Cumulative Returns', f'cumulative_returns_{safe_event}.html')
+    create_chart_with_event(event, date_range, annual_returns, 'Annual Returns', f'annual_returns_{safe_event}.html', 'bar')
+    create_chart_with_event(event, date_range, drawdowns, 'Drawdowns', f'drawdowns_{safe_event}.html')
 
-# 3. Drawdowns Chart
-drawdowns_fig = go.Figure()
-drawdowns_fig.add_trace(go.Scatter(
-    x=data.index,
-    y=drawdowns,
-    mode='lines',
-    name='Drawdowns',
-    line=dict(color='red')
-))
-drawdowns_fig.update_layout(
-    title='',
-    xaxis_title='Date',
-    yaxis_title='Drawdown (%)',
-    hovermode='x unified',
-    width=800,  
-    height=400,  
-    margin=dict(l=20, r=20, t=40, b=20),  
-    autosize=False  
-)
-pio.write_html(drawdowns_fig, file='drawdowns_chart.html')
+# Generate default charts
+default_charts = {
+    'cumulative_returns_chart.html': ('Cumulative Return', data['Cumulative Return'], 'line'),
+    'annual_returns_chart.html': ('Annual Returns', annual_returns, 'bar'),
+    'drawdowns_chart.html': ('Drawdowns', drawdowns, 'line')
+}
+
+for filename, (title, y_data, chart_type) in default_charts.items():
+    create_chart_with_event(None, (None, None), y_data, title, filename, chart_type)
