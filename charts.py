@@ -55,7 +55,7 @@ def create_chart_with_event(event_name, event_range, y_data, title, filename, ch
             marker_color=['green' if val >= 0 else 'red' for val in annual_returns.values]
         ))
     
-    # Only add the highlighted area if an event range is provided
+    # Only add the highlighted area if      an event range is provided
     if event_range[0] and event_range[1]:
         fig.add_vrect(
             x0=event_range[0], x1=event_range[1],
@@ -91,3 +91,5 @@ default_charts = {
 
 for filename, (title, y_data, chart_type) in default_charts.items():
     create_chart_with_event(None, (None, None), y_data, title, filename, chart_type)
+
+

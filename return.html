@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>S&P 500 Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+        .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+        .fa-chart-line {font-size:200px}
+
+        .w3-red{
+            background-color: #437A93 !important;;
+        }
+
+        /* Custom style for chart containers */
+        .chart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 20px;
+            text-align: center; /* Center text */
+        }
+        .chart {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin: 20px auto;
+        }
+        .chart-description {
+            max-width: 800px;
+            margin-bottom: 20px; /* Add margin below the text */
+        }
+
+        /* Custom style for active tab text background */
+        .w3-bar .active-tab {
+            background-color: white;
+            color: black;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        /* Custom style for analytics boxes */
+        .analytics-box {
+            padding: 16px;
+            text-align: center;
+            margin: 10px;
+            border-radius: 8px;
+            background-color: #f1f1f1;
+            width: 250px; /* Increased width to fit text in one line */
+            height: 120px; /* Fixed height for all boxes */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+        }
+        .analytics-box h4 {
+            font-size: 14px;
+            margin: 0;
+            color: #666;
+            white-space: nowrap; /* Prevent text from wrapping to the next line */
+        }
+        .analytics-box p {
+            font-size: 24px;
+            margin: 8px 0 0;
+            font-weight: bold;
+            color: #333;
+            white-space: nowrap; /* Prevent text from wrapping to the next line */
+        }
+
+        /* Custom layout for analytics boxes */
+        .analytics-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between left and right columns */
+        }
+        .analytics-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Space between boxes in the same column */
+        }
+
+        /* Style for the return calculator form */
+        .calculator-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%; /* Ensure both forms have the same width */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Ensure content is spaced evenly */
+            height: 100%; /* Ensure both forms have the same height */
+        }
+        .calculator-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .calculator-form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .calculator-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #437A93;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .calculator-form button:hover {
+            background-color: #365f73;
+        }
+        .calculator-result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Layout for the two calculators */
+        .calculator-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px; /* Space between the two calculators */
+            margin-top: 40px;
+            align-items: flex-start; /* Align items at the top */
+        }
+
+        /* Ensure both calculators have the same width and alignment */
+        .calculator-container > div {
+            flex: 1;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the content horizontally */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+            <!-- Home tab -->
+            <a href="../WebPage.html#home" class="w3-bar-item w3-button w3-padding-large">Home</a>
+            <!-- Analytics tab -->
+            <a href="../WebPage.html#analytics" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Analytics</a>
+            <!-- Visualizations tab -->
+            <a href="../WebPage.html#visualizations" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Visualizations</a>
+            <!-- Compare tab -->
+            <a href="compare.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Compare</a>
+            <!-- Return Calculator tab (active) -->
+            <a href="return.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Calculators</a>
+        </div>
+
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+            <!-- Home tab -->
+            <a href="../WebPage.html#home" class="w3-bar-item w3-button w3-padding-large">Home</a>
+            <!-- Analytics tab -->
+            <a href="../WebPage.html#analytics" class="w3-bar-item w3-button w3-padding-large">Analytics</a>
+            <!-- Visualizations tab -->
+            <a href="../WebPage.html#visualizations" class="w3-bar-item w3-button w3-padding-large">Visualizations</a>
+            <!-- Compare tab -->
+            <a href="compare.html" class="w3-bar-item w3-button w3-padding-large">Compare</a>
+            <!-- Return Calculator tab (active) -->
+            <a href="return.html" class="w3-bar-item w3-button w3-padding-large">Calculators</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="w3-container w3-red w3-center" style="padding:64px 16px" id="home">
+        <h1 class="w3-margin w3-jumbo">Calculators</h1>
+        <p class="w3-xlarge">Examination Number: 247070</p>
+        <a href="#calculator" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Use Calculators</a>
+    </header>
+
+    <!-- Calculator Container -->
+    <div class="w3-container w3-padding-64" id="calculator">
+        <div class="calculator-container">
+            <!-- Compound Interest Calculator -->
+            <div>
+                <h2 class="w3-wide w3-center">Compound Interest Calculator</h2>
+                <p class="w3-opacity w3-center"><i>Calculate the future value of your investment</i></p>
+
+                <!-- Calculator Form -->
+                <div class="calculator-form">
+                    <label for="initialAmount">Initial Investment Amount ($):</label>
+                    <input type="number" id="initialAmount" placeholder="Enter initial amount">
+
+                    <label for="annualReturn">Annual Return Rate (%):</label>
+                    <input type="number" id="annualReturn" placeholder="Enter annual return rate">
+
+                    <label for="years">Number of Years:</label>
+                    <input type="number" id="years" placeholder="Enter number of years">
+
+                    <button onclick="calculateReturn()">Calculate</button>
+
+                    <!-- Result Display -->
+                    <div class="calculator-result" id="result"></div>
+                </div>
+            </div>
+
+            <!-- S&P 500 Investment Calculator -->
+            <div>
+                <h2 class="w3-wide w3-center">S&P 500 Investment Calculator</h2>
+                <p class="w3-opacity w3-center"><i>Calculate your return based on historical S&P 500 data</i></p>
+
+                <!-- S&P 500 Calculator Form -->
+                <div class="calculator-form">
+                    <!-- Buy Date Row -->
+                    <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+                        <div style="flex: 1;">
+                            <label for="buyDay">Buy Day:</label>
+                            <input type="number" id="buyDay" placeholder="Day" min="1" max="31">
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="buyMonth">Buy Month:</label>
+                            <input type="number" id="buyMonth" placeholder="Month" min="1" max="12">
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="buyYear">Buy Year:</label>
+                            <input type="number" id="buyYear" placeholder="Year (e.g., 1928)">
+                        </div>
+                    </div>
+
+                    <!-- Sell Date Row -->
+                    <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+                        <div style="flex: 1;">
+                            <label for="sellDay">Sell Day:</label>
+                            <input type="number" id="sellDay" placeholder="Day" min="1" max="31">
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="sellMonth">Sell Month:</label>
+                            <input type="number" id="sellMonth" placeholder="Month" min="1" max="12">
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="sellYear">Sell Year:</label>
+                            <input type="number" id="sellYear" placeholder="Year (e.g., 1928)">
+                        </div>
+                    </div>
+
+                    <!-- Initial Investment Row -->
+                    <div>
+                        <label for="initialInvestment">Initial Investment ($):</label>
+                        <input type="number" id="initialInvestment" placeholder="Enter initial investment">
+                    </div>
+
+                    <button onclick="calculateSP500Return()">Calculate</button>
+
+                    <!-- Result Display -->
+                    <div class="calculator-result" id="sp500Result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for the Calculators -->
+    <script>
+        // Compound Interest Calculator
+        function calculateReturn() {
+            // Get input values
+            const initialAmount = parseFloat(document.getElementById('initialAmount').value);
+            const annualReturn = parseFloat(document.getElementById('annualReturn').value);
+            const years = parseFloat(document.getElementById('years').value);
+
+            // Validate inputs
+            if (isNaN(initialAmount) || isNaN(annualReturn) || isNaN(years)) {
+                alert("Please enter valid numbers for all fields.");
+                return;
+            }
+
+            // Calculate the future value
+            const futureValue = initialAmount * Math.pow(1 + (annualReturn / 100), years);
+
+            // Display the result
+            document.getElementById('result').innerHTML = `
+                <p>Future Value: $${futureValue.toFixed(2)}</p>
+            `;
+        }
+
+        // S&P 500 Investment Calculator
+        function calculateSP500Return() {
+            // Get input values
+            const buyDay = document.getElementById('buyDay').value;
+            const buyMonth = document.getElementById('buyMonth').value;
+            const buyYear = document.getElementById('buyYear').value;
+            const sellDay = document.getElementById('sellDay').value;
+            const sellMonth = document.getElementById('sellMonth').value;
+            const sellYear = document.getElementById('sellYear').value;
+            const initialInvestment = parseFloat(document.getElementById('initialInvestment').value);
+
+            // Validate inputs
+            if (!buyDay || !buyMonth || !buyYear || !sellDay || !sellMonth || !sellYear || isNaN(initialInvestment)) {
+                alert("Please enter valid dates and initial investment.");
+                return;
+            }
+
+            // Construct buy and sell dates
+            const buyDate = `${buyYear}-${buyMonth.padStart(2, '0')}-${buyDay.padStart(2, '0')}`;
+            const sellDate = `${sellYear}-${sellMonth.padStart(2, '0')}-${sellDay.padStart(2, '0')}`;
+
+            // Calculate the return on investment
+            const returnOnInvestment = (sellPrice / buyPrice) * initialInvestment;
+
+            // Display the result
+            document.getElementById('sp500Result').innerHTML = `
+                <p>If you had invested $${initialInvestment.toFixed(2)} on ${buyDate}, you would have $${returnOnInvestment.toFixed(2)} on ${sellDate}.</p>
+            `;
+        }
+    </script>
+</body>
+</html>

@@ -106,3 +106,9 @@ drawdowns_fig.update_layout(
     autosize=False  
 )
 pio.write_html(drawdowns_fig, file='bitcoin_drawdowns_chart.html')
+
+
+#Combined Chart
+
+#Me gusta mucho fumar porros y 
+
