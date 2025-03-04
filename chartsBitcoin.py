@@ -86,29 +86,8 @@ annual_returns_fig.update_layout(
 )
 pio.write_html(annual_returns_fig, file='bitcoin_annual_returns_chart.html')
 
-# 3. Drawdowns Chart
-drawdowns_fig = go.Figure()
-drawdowns_fig.add_trace(go.Scatter(
-    x=data.index,
-    y=drawdowns,
-    mode='lines',
-    name='Drawdowns',
-    line=dict(color='red')
-))
-drawdowns_fig.update_layout(
-    title='Drawdowns Over Time',
-    xaxis_title='Date',
-    yaxis_title='Drawdown (%)',
-    hovermode='x unified',
-    width=800,  
-    height=400,  
-    margin=dict(l=20, r=20, t=40, b=20),  
-    autosize=False  
-)
-pio.write_html(drawdowns_fig, file='bitcoin_drawdowns_chart.html')
-
 
 #Combined Chart
 
-#Me gusta mucho fumar porros y 
+
 

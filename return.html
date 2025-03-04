@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>S&P 500 Dashboard</title>
+    <title>Calculators</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -293,7 +293,7 @@
         }
 
         // S&P 500 Investment Calculator
-        function calculateSP500Return() {
+        async function calculateSP500Return() {
             // Get input values
             const buyDay = document.getElementById('buyDay').value;
             const buyMonth = document.getElementById('buyMonth').value;
@@ -312,6 +312,36 @@
             // Construct buy and sell dates
             const buyDate = `${buyYear}-${buyMonth.padStart(2, '0')}-${buyDay.padStart(2, '0')}`;
             const sellDate = `${sellYear}-${sellMonth.padStart(2, '0')}-${sellDay.padStart(2, '0')}`;
+
+            // Fetch the CSV data
+            const response = await fetch('CleanHistoricalDataSP500.csv');
+            const data = await response.text();
+
+            // Parse the CSV data
+            const rows = data.split('\n').slice(1); // Skip the header row
+            let buyPrice = null;
+            let sellPrice = null;
+
+            for (const row of rows) {
+                const [date, open, high, low, close] = row.split(',');
+
+                if (date === buyDate) {
+                    buyPrice = parseFloat(close);
+                }
+
+                if (date === sellDate) {
+                    sellPrice = parseFloat(close);
+                }
+
+                if (buyPrice !== null && sellPrice !== null) {
+                    break;
+                }
+            }
+
+            if (buyPrice === null || sellPrice === null) {
+                alert("Could not find data for the selected dates.");
+                return;
+            }
 
             // Calculate the return on investment
             const returnOnInvestment = (sellPrice / buyPrice) * initialInvestment;
