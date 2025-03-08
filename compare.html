@@ -131,6 +131,109 @@
             color: #666;
             margin-bottom: 20px;
         }
+
+        /* Poll and Comments Section */
+        .poll-section {
+            text-align: center;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+
+        .poll-section h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .poll-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .poll-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #437A93;
+            color: white;
+        }
+
+        .poll-buttons button:hover {
+            background-color: #365f73;
+        }
+
+        .poll-results {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .poll-results div {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .comments-section {
+            text-align: center;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+
+        .comments-section h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .comments-section textarea {
+            width: 100%;
+            max-width: 600px;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px; /* Reduced margin */
+        }
+
+        .comments-section .submit-container {
+            display: flex;
+            justify-content: flex-end; /* Align button to the right */
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .comments-section button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #437A93;
+            color: white;
+        }
+
+        .comments-section button:hover {
+            background-color: #365f73;
+        }
+
+        .comments-list {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .comment {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -239,10 +342,26 @@
     <h2 class="w3-wide w3-center">Cumulative Returns</h2>
     <p class="w3-opacity w3-center"><i>This chart displays the cumulative growth of $1 invested in both Bitcoin and the S&P 500 over time.</i></p>
 
-    <!-- Cumulative Returns Chart -->
-    <div class="chart-container">
-        <div class="chart-description">
-            <iframe src="bitcoin_cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+    <!-- Cumulative Returns Charts -->
+    <div class="w3-row">
+        <!-- S&P 500 Chart -->
+        <div class="w3-col m6">
+            <div class="chart-container">
+                <h3>S&P 500 Cumulative Returns</h3> <!-- Added heading for S&P 500 -->
+                <div class="chart-description">
+                    <iframe src="cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bitcoin Chart -->
+        <div class="w3-col m6">
+            <div class="chart-container">
+                <h3>Bitcoin Cumulative Returns</h3> <!-- Added heading for Bitcoin -->
+                <div class="chart-description">
+                    <iframe src="bitcoin_cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -259,9 +378,33 @@
         <p>Based on the analytics shown above and as depicted in the graph, Bitcoin has demonstrated superior short-term performance, particularly during its initial boom. However, it is important to note that Bitcoin's volatility makes it a less stable investment option.</p>
         <p>On the other hand, the S&P 500 has shown consistent growth over the past century, recovering from all its drawdowns. The index is dynamic, with underperforming companies being replaced by stronger ones, ensuring that only the top 500 companies contribute to its performance at any given time.</p>
         <p>If you have a significant amount of capital that you do not need in the near future and are unsure where to invest, I recommend considering the S&P 500. While it may not offer the rapid growth potential of Bitcoin, it provides a more stable and steady return over the long term.</p>
+        
+   
+    </div>
+</div>
 
+<!-- Poll Section -->
+<div class="poll-section">
+    <h3>Which market do you prefer?</h3>
+    <div class="poll-buttons">
+        <button onclick="vote('sp500')">S&P 500</button>
+        <button onclick="vote('bitcoin')">Bitcoin</button>
+    </div>
+    <div class="poll-results">
+        <div>S&P 500 Votes: <span id="sp500-votes">0</span></div>
+        <div>Bitcoin Votes: <span id="bitcoin-votes">0</span></div>
+    </div>
+</div>
 
-        <h4>Would you rather invest on the S&P 500 or Bitcoin?</h4>
+<!-- Comments Section -->
+<div class="comments-section">
+    <h3>Tell us why!</h3>
+    <textarea id="comment-input" placeholder="Share your opinion..."></textarea>
+    <div class="submit-container">
+        <button onclick="submitComment()">Submit</button>
+    </div>
+    <div class="comments-list" id="comments-list">
+        <!-- Comments will be dynamically added here -->
     </div>
 </div>
 
@@ -269,6 +412,39 @@
 <footer class="w3-container w3-padding-64 w3-center w3-opacity">
     <p>Powered by <a href="https://www.w3schools.com/w3css/" target="_blank">w3.css</a></p>
 </footer>
+
+<script>
+    // Poll functionality
+    let bitcoinVotes = 0;
+    let sp500Votes = 0;
+
+    function vote(market) {
+        if (market === 'bitcoin') {
+            bitcoinVotes++;
+            document.getElementById('bitcoin-votes').textContent = bitcoinVotes;
+        } else if (market === 'sp500') {
+            sp500Votes++;
+            document.getElementById('sp500-votes').textContent = sp500Votes;
+        }
+    }
+
+    // Comments functionality
+    function submitComment() {
+        const commentInput = document.getElementById('comment-input');
+        const commentText = commentInput.value.trim();
+
+        if (commentText) {
+            const commentsList = document.getElementById('comments-list');
+            const newComment = document.createElement('div');
+            newComment.className = 'comment';
+            newComment.textContent = commentText;
+            commentsList.appendChild(newComment);
+
+            // Clear the input field
+            commentInput.value = '';
+        }
+    }
+</script>
 
 </body>
 </html>
