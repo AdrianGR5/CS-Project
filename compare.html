@@ -238,213 +238,220 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<div class="w3-top">
-    <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-        <!-- Updated links to point to WebPage.html in the parent directory -->
-        <a href="../WebPage.html#home" class="w3-bar-item w3-button w3-padding-large">Home</a>
-        <a href="../WebPage.html#analytics" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Analytics</a>
-        <a href="../WebPage.html#visualizations" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Visualizations</a>
-        <!-- Add the active-tab class to the Compare tab -->
-        <a href="compare.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large active-tab">Compare</a>
-        <a href="return.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Calculators</a>
-
-    </div>
-
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-        <!-- Updated links to point to WebPage.html in the parent directory -->
-        <a href="../WebPage.html#home" class="w3-bar-item w3-button w3-padding-large">Home</a>
-        <a href="../WebPage.html#analytics" class="w3-bar-item w3-button w3-padding-large">Analytics</a>
-        <a href="../WebPage.html#visualizations" class="w3-bar-item w3-button w3-padding-large">Visualizations</a>
-        <!-- Add the active-tab class to the Compare tab for small screens -->
-        <a href="compare.html" class="w3-bar-item w3-button w3-padding-large active-tab">Compare</a>
-        <a href="return.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Calculators</a>
-
-    </div>
-</div>
-
-<!-- Header -->
-<header class="w3-container w3-red w3-center" style="padding:64px 16px">
-    <h1 class="w3-margin w3-jumbo">S&P 500 vs Bitcoin</h1>
-    <p class="w3-xlarge">Examination Number: 247070</p>
-    <a href="#analytics" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Explore Analytics</a>
-</header>
-
-<!-- Analytics Summary -->
-<div class="w3-container w3-padding-64 w3-center" id="analytics">
-    <div class="w3-container w3-padding-64 w3-center">
-        <h2 class="w3-wide">Comparison of Analytics</h2>
-        <p class="w3-opacity"><i>Key metrics of S&P 500 and Bitcoin performance</i></p>
-        <div class="w3-row">
-            <div class="w3-col m6 w3-padding-large">
-                <p></p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="analytics-container">
-        <!-- S&P 500 Column (Left) -->
-        <div class="analytics-column">
-            <h3 class="title_column">S&P 500</h3>
-            <!-- Box for Average Annual Returns -->
-            <div class="analytics-box">
-                <h4>Average Annual Returns</h4>
-                <p id="average-returns">8.52%</p>
-            </div>
-            <!-- Box for Annual Growth Rate (CAGR) -->
-            <div class="analytics-box">
-                <h4>Annual Growth Rate (CAGR)</h4>
-                <p id="cagr">9.23%</p>
-            </div>
-            <!-- Box for Maximum Drawdown -->
-            <div class="analytics-box">
-                <h4>Maximum Drawdown</h4>
-                <p id="max-drawdown">-37.2%</p>
-            </div>
-            <!-- Box for Average Maximum Loss by Year -->
-            <div class="analytics-box">
-                <h4>Average Maximum Drawdown by Year</h4>
-                <p id="avg-loss">-15.4%</p>
-            </div>
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+            <a href="../WebPage.html#home" class="w3-bar-item w3-button w3-padding-large">Home</a>
+            <a href="compare.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large active-tab">Compare</a>
+            <a href="return.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Calculators</a>
         </div>
 
-        <!-- Bitcoin Column (Right) -->
-        <div class="analytics-column">
-            <h3 class="title_column">Bitcoin</h3>
-            <!-- Box for Average Annual Returns -->
-            <div class="analytics-box">
-                <h4>Average Annual Returns</h4>
-                <p id="average-returns">150.25%</p>
-            </div>
-            <!-- Box for Annual Growth Rate (CAGR) -->
-            <div class="analytics-box">
-                <h4>Annual Growth Rate (CAGR)</h4>
-                <p id="cagr">200.50%</p>
-            </div>
-            <!-- Box for Maximum Drawdown -->
-            <div class="analytics-box">
-                <h4>Maximum Drawdown</h4>
-                <p id="max-drawdown">-85.30%</p>
-            </div>
-            <!-- Box for Average Maximum Loss by Year -->
-            <div class="analytics-box">
-                <h4>Average Maximum Drawdown by Year</h4>
-                <p id="avg-loss">-40.15%</p>
-            </div>
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+            <a href="../WebPage.html#home" class="w3-bar-item w3-button w3-padding-large">Home</a>
+            <a href="compare.html" class="w3-bar-item w3-button w3-padding-large active-tab">Compare</a>
+            <a href="return.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Calculators</a>
         </div>
     </div>
-</div>
 
-<!-- Visualizations -->
-<div class="w3-container w3-light-grey w3-padding-64" id="visualizations">
-    <h2 class="w3-wide w3-center">Cumulative Returns</h2>
-    <p class="w3-opacity w3-center"><i>This chart displays the cumulative growth of $1 invested in both Bitcoin and the S&P 500 over time.</i></p>
+    <!-- Header -->
+    <header class="w3-container w3-red w3-center" style="padding:64px 16px">
+        <h1 class="w3-margin w3-jumbo">S&P 500 vs Bitcoin</h1>
+        <p class="w3-xlarge">Examination Number: 247070</p>
+        <a href="#analytics" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Explore Analytics</a>
+    </header>
 
-    <!-- Cumulative Returns Charts -->
-    <div class="w3-row">
-        <!-- S&P 500 Chart -->
-        <div class="w3-col m6">
-            <div class="chart-container">
-                <h3>S&P 500 Cumulative Returns</h3> <!-- Added heading for S&P 500 -->
-                <div class="chart-description">
-                    <iframe src="cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+    <!-- Analytics Summary -->
+    <div class="w3-container w3-padding-64 w3-center" id="analytics">
+        <div class="w3-container w3-padding-64 w3-center">
+            <h2 class="w3-wide">Comparison of Analytics</h2>
+            <p class="w3-opacity"><i>Key metrics of S&P 500 and Bitcoin performance</i></p>
+            <div class="w3-row">
+                <div class="w3-col m6 w3-padding-large">
+                    <p></p>
                 </div>
             </div>
         </div>
-
-        <!-- Bitcoin Chart -->
-        <div class="w3-col m6">
-            <div class="chart-container">
-                <h3>Bitcoin Cumulative Returns</h3> <!-- Added heading for Bitcoin -->
-                <div class="chart-description">
-                    <iframe src="bitcoin_cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Disclaimer and Recommendations -->
-<div class="w3-container w3-padding-64 w3-center disclaimer-recommendations">
-    <div>
-        <h4>Disclaimer!</h4>
-        <p>This analysis represents my own opinion, and I am not responsible for any financial losses incurred based on this information. Always conduct your own research or consult a financial advisor before making investment decisions.</p>
-    </div>
-
-    <div>
-        <h3>Recommendations</h3>
-        <p>Based on the analytics shown above and as depicted in the graph, Bitcoin has demonstrated superior short-term performance, particularly during its initial boom. However, it is important to note that Bitcoin's volatility makes it a less stable investment option.</p>
-        <p>On the other hand, the S&P 500 has shown consistent growth over the past century, recovering from all its drawdowns. The index is dynamic, with underperforming companies being replaced by stronger ones, ensuring that only the top 500 companies contribute to its performance at any given time.</p>
-        <p>If you have a significant amount of capital that you do not need in the near future and are unsure where to invest, I recommend considering the S&P 500. While it may not offer the rapid growth potential of Bitcoin, it provides a more stable and steady return over the long term.</p>
         
-   
+        <div class="analytics-container">
+            <!-- S&P 500 Column (Left) -->
+            <div class="analytics-column">
+                <h3 class="title_column">S&P 500</h3>
+                <!-- Box for Average Annual Returns -->
+                <div class="analytics-box">
+                    <h4>Average Annual Returns</h4>
+                    <p id="average-returns">8.52%</p>
+                </div>
+                <!-- Box for Annual Growth Rate (CAGR) -->
+                <div class="analytics-box">
+                    <h4>Annual Growth Rate (CAGR)</h4>
+                    <p id="cagr">9.23%</p>
+                </div>
+                <!-- Box for Maximum Drawdown -->
+                <div class="analytics-box">
+                    <h4>Maximum Drawdown</h4>
+                    <p id="max-drawdown">-37.2%</p>
+                </div>
+                <!-- Box for Average Maximum Loss by Year -->
+                <div class="analytics-box">
+                    <h4>Average Maximum Drawdown by Year</h4>
+                    <p id="avg-loss">-15.4%</p>
+                </div>
+            </div>
+
+            <!-- Bitcoin Column (Right) -->
+            <div class="analytics-column">
+                <h3 class="title_column">Bitcoin</h3>
+                <!-- Box for Average Annual Returns -->
+                <div class="analytics-box">
+                    <h4>Average Annual Returns</h4>
+                    <p id="average-returns">150.25%</p>
+                </div>
+                <!-- Box for Annual Growth Rate (CAGR) -->
+                <div class="analytics-box">
+                    <h4>Annual Growth Rate (CAGR)</h4>
+                    <p id="cagr">200.50%</p>
+                </div>
+                <!-- Box for Maximum Drawdown -->
+                <div class="analytics-box">
+                    <h4>Maximum Drawdown</h4>
+                    <p id="max-drawdown">-85.30%</p>
+                </div>
+                <!-- Box for Average Maximum Loss by Year -->
+                <div class="analytics-box">
+                    <h4>Average Maximum Drawdown by Year</h4>
+                    <p id="avg-loss">-40.15%</p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-<!-- Poll Section -->
-<div class="poll-section">
-    <h3>Which market do you prefer?</h3>
-    <div class="poll-buttons">
-        <button onclick="vote('sp500')">S&P 500</button>
-        <button onclick="vote('bitcoin')">Bitcoin</button>
+    <!-- Visualizations -->
+    <div class="w3-container w3-light-grey w3-padding-64" id="visualizations">
+        <h2 class="w3-wide w3-center">Cumulative Returns</h2>
+        <p class="w3-opacity w3-center"><i>This chart displays the cumulative growth of $1 invested in both Bitcoin and the S&P 500 over time.</i></p>
+
+        <!-- Cumulative Returns Charts -->
+        <div class="w3-row">
+            <!-- S&P 500 Chart -->
+            <div class="w3-col m6">
+                <div class="chart-container">
+                    <h3>S&P 500 Cumulative Returns</h3> <!-- Added heading for S&P 500 -->
+                    <div class="chart-description">
+                        <iframe src="cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bitcoin Chart -->
+            <div class="w3-col m6">
+                <div class="chart-container">
+                    <h3>Bitcoin Cumulative Returns</h3> <!-- Added heading for Bitcoin -->
+                    <div class="chart-description">
+                        <iframe src="bitcoin_cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="poll-results">
-        <div>S&P 500 Votes: <span id="sp500-votes">0</span></div>
-        <div>Bitcoin Votes: <span id="bitcoin-votes">0</span></div>
+
+    <!-- Disclaimer and Recommendations -->
+    <div class="w3-container w3-padding-64 w3-center disclaimer-recommendations">
+        <div>
+            <h4>Disclaimer!</h4>
+            <p>This analysis represents my own opinion, and I am not responsible for any financial losses incurred based on this information. Always conduct your own research or consult a financial advisor before making investment decisions.</p>
+        </div>
+
+        <div>
+            <h3>Recommendations</h3>
+            <p>Based on the analytics shown above and as depicted in the graph, Bitcoin has demonstrated superior short-term performance, particularly during its initial boom. However, it is important to note that Bitcoin's volatility makes it a less stable investment option.</p>
+            <p>On the other hand, the S&P 500 has shown consistent growth over the past century, recovering from all its drawdowns. The index is dynamic, with underperforming companies being replaced by stronger ones, ensuring that only the top 500 companies contribute to its performance at any given time.</p>
+            <p>If you have a significant amount of capital that you do not need in the near future and are unsure where to invest, I recommend considering the S&P 500. While it may not offer the rapid growth potential of Bitcoin, it provides a more stable and steady return over the long term.</p>
+        </div>
     </div>
-</div>
 
-<!-- Comments Section -->
-<div class="comments-section">
-    <h3>Tell us why!</h3>
-    <textarea id="comment-input" placeholder="Share your opinion..."></textarea>
-    <div class="submit-container">
-        <button onclick="submitComment()">Submit</button>
+    <!-- Poll Section -->
+    <div class="poll-section">
+        <h3>Which market do you prefer?</h3>
+        <div class="poll-buttons">
+            <button onclick="vote('sp500')">S&P 500</button>
+            <button onclick="vote('bitcoin')">Bitcoin</button>
+        </div>
+        <div class="poll-results">
+            <div>S&P 500 Votes: <span id="sp500-votes">0</span></div>
+            <div>Bitcoin Votes: <span id="bitcoin-votes">0</span></div>
+        </div>
     </div>
-    <div class="comments-list" id="comments-list">
-        <!-- Comments will be dynamically added here -->
+
+    <!-- Comments Section -->
+    <div class="comments-section">
+        <h3>Tell us why!</h3>
+        <textarea id="comment-input" placeholder="Share your opinion..."></textarea>
+        <div class="submit-container">
+            <button onclick="submitComment()">Submit</button>
+        </div>
+        <div class="comments-list" id="comments-list">
+            <!-- Comments will be dynamically added here -->
+        </div>
     </div>
-</div>
 
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-opacity">
-    <p>Powered by <a href="https://www.w3schools.com/w3css/" target="_blank">w3.css</a></p>
-</footer>
+    <script>
+        // Load votes and comments from localStorage on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Load votes
+            const storedVotes = JSON.parse(localStorage.getItem('votes')) || { bitcoin: 0, sp500: 0 };
+            document.getElementById('bitcoin-votes').textContent = storedVotes.bitcoin;
+            document.getElementById('sp500-votes').textContent = storedVotes.sp500;
 
-<script>
-    // Poll functionality
-    let bitcoinVotes = 0;
-    let sp500Votes = 0;
-
-    function vote(market) {
-        if (market === 'bitcoin') {
-            bitcoinVotes++;
-            document.getElementById('bitcoin-votes').textContent = bitcoinVotes;
-        } else if (market === 'sp500') {
-            sp500Votes++;
-            document.getElementById('sp500-votes').textContent = sp500Votes;
-        }
-    }
-
-    // Comments functionality
-    function submitComment() {
-        const commentInput = document.getElementById('comment-input');
-        const commentText = commentInput.value.trim();
-
-        if (commentText) {
+            // Load comments
+            const storedComments = JSON.parse(localStorage.getItem('comments')) || [];
             const commentsList = document.getElementById('comments-list');
-            const newComment = document.createElement('div');
-            newComment.className = 'comment';
-            newComment.textContent = commentText;
-            commentsList.appendChild(newComment);
+            storedComments.forEach(comment => {
+                const newComment = document.createElement('div');
+                newComment.className = 'comment';
+                newComment.textContent = comment;
+                commentsList.appendChild(newComment);
+            });
+        });
 
-            // Clear the input field
-            commentInput.value = '';
+        // Poll functionality
+        function vote(market) {
+            const storedVotes = JSON.parse(localStorage.getItem('votes')) || { bitcoin: 0, sp500: 0 };
+
+            if (market === 'bitcoin') {
+                storedVotes.bitcoin++;
+                document.getElementById('bitcoin-votes').textContent = storedVotes.bitcoin;
+            } else if (market === 'sp500') {
+                storedVotes.sp500++;
+                document.getElementById('sp500-votes').textContent = storedVotes.sp500;
+            }
+
+            // Save votes to localStorage
+            localStorage.setItem('votes', JSON.stringify(storedVotes));
         }
-    }
-</script>
 
+        // Comments functionality
+        function submitComment() {
+            const commentInput = document.getElementById('comment-input');
+            const commentText = commentInput.value.trim();
+
+            if (commentText) {
+                const commentsList = document.getElementById('comments-list');
+                const newComment = document.createElement('div');
+                newComment.className = 'comment';
+                newComment.textContent = commentText;
+                commentsList.appendChild(newComment);
+
+                // Save comments to localStorage
+                const storedComments = JSON.parse(localStorage.getItem('comments')) || [];
+                storedComments.push(commentText);
+                localStorage.setItem('comments', JSON.stringify(storedComments));
+
+                // Clear the input field
+                commentInput.value = '';
+            }
+        }
+    </script>
 </body>
 </html>

@@ -146,6 +146,41 @@
             flex-direction: column;
             align-items: center; /* Center the content horizontally */
         }
+        /* Existing CSS */
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+table {
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.w3-red {
+    background-color: #437A93 !important;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+td:nth-child(2) a {
+    color: #0072c6;
+    text-decoration: underline;
+}
+
+/* New CSS for active tab */
+.w3-bar .w3-button.active-tab {
+    background-color: white !important;
+    color: black !important;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
     </style>
 </head>
 <body>
@@ -154,30 +189,16 @@
     <div class="w3-top">
         <div class="w3-bar w3-red w3-card w3-left-align w3-large">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-            <!-- Home tab -->
             <a href="../WebPage.html#home" class="w3-bar-item w3-button w3-padding-large">Home</a>
-            <!-- Analytics tab -->
-            <a href="../WebPage.html#analytics" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Analytics</a>
-            <!-- Visualizations tab -->
-            <a href="../WebPage.html#visualizations" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Visualizations</a>
-            <!-- Compare tab -->
             <a href="compare.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Compare</a>
-            <!-- Return Calculator tab (active) -->
-            <a href="return.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Calculators</a>
+            <a href="return.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large active-tab">Calculators</a>
         </div>
 
         <!-- Navbar on small screens -->
         <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-            <!-- Home tab -->
             <a href="../WebPage.html#home" class="w3-bar-item w3-button w3-padding-large">Home</a>
-            <!-- Analytics tab -->
-            <a href="../WebPage.html#analytics" class="w3-bar-item w3-button w3-padding-large">Analytics</a>
-            <!-- Visualizations tab -->
-            <a href="../WebPage.html#visualizations" class="w3-bar-item w3-button w3-padding-large">Visualizations</a>
-            <!-- Compare tab -->
             <a href="compare.html" class="w3-bar-item w3-button w3-padding-large">Compare</a>
-            <!-- Return Calculator tab (active) -->
-            <a href="return.html" class="w3-bar-item w3-button w3-padding-large">Calculators</a>
+            <a href="return.html" class="w3-bar-item w3-button w3-padding-large active-tab">Calculators</a>
         </div>
     </div>
 
@@ -199,13 +220,13 @@
                 <!-- Calculator Form -->
                 <div class="calculator-form">
                     <label for="initialAmount">Initial Investment Amount ($):</label>
-                    <input type="number" id="initialAmount" placeholder="Enter initial amount">
+                    <input type="number" id="initialAmount" placeholder="Enter initial amount - eg(3000)">
 
                     <label for="annualReturn">Annual Return Rate (%):</label>
-                    <input type="number" id="annualReturn" placeholder="Enter annual return rate">
+                    <input type="number" id="annualReturn" placeholder="Enter annual return rate - eg(5)">
 
                     <label for="years">Number of Years:</label>
-                    <input type="number" id="years" placeholder="Enter number of years">
+                    <input type="number" id="years" placeholder="Enter number of years - eg(15)">
 
                     <button onclick="calculateReturn()">Calculate</button>
 
@@ -270,6 +291,13 @@
 
     <!-- JavaScript for the Calculators -->
     <script>
+        // Function to check if a date is a weekday
+        function isWeekday(date) {
+            const day = date.getDay();
+            // getDay() returns 0 (Sunday) to 6 (Saturday)
+            return day >= 1 && day <= 5; // Monday to Friday are weekdays
+        }
+
         // Compound Interest Calculator
         function calculateReturn() {
             // Get input values
@@ -310,8 +338,19 @@
             }
 
             // Construct buy and sell dates
-            const buyDate = `${buyYear}-${buyMonth.padStart(2, '0')}-${buyDay.padStart(2, '0')}`;
-            const sellDate = `${sellYear}-${sellMonth.padStart(2, '0')}-${sellDay.padStart(2, '0')}`;
+            const buyDate = new Date(`${buyYear}-${buyMonth.padStart(2, '0')}-${buyDay.padStart(2, '0')}`);
+            const sellDate = new Date(`${sellYear}-${sellMonth.padStart(2, '0')}-${sellDay.padStart(2, '0')}`);
+
+            // Check if the buy and sell dates are weekdays
+            if (!isWeekday(buyDate)) {
+                alert("The buy date is a weekend. Please select a weekday.");
+                return;
+            }
+
+            if (!isWeekday(sellDate)) {
+                alert("The sell date is a weekend. Please select a weekday.");
+                return;
+            }
 
             // Fetch the CSV data
             const response = await fetch('CleanHistoricalDataSP500.csv');
@@ -325,11 +364,11 @@
             for (const row of rows) {
                 const [date, open, high, low, close] = row.split(',');
 
-                if (date === buyDate) {
+                if (date === buyDate.toISOString().split('T')[0]) {
                     buyPrice = parseFloat(close);
                 }
 
-                if (date === sellDate) {
+                if (date === sellDate.toISOString().split('T')[0]) {
                     sellPrice = parseFloat(close);
                 }
 
@@ -348,7 +387,7 @@
 
             // Display the result
             document.getElementById('sp500Result').innerHTML = `
-                <p>If you had invested $${initialInvestment.toFixed(2)} on ${buyDate}, you would have $${returnOnInvestment.toFixed(2)} on ${sellDate}.</p>
+                <p>If you had invested $${initialInvestment.toFixed(2)} on ${buyDate.toISOString().split('T')[0]}, you would have $${returnOnInvestment.toFixed(2)} on ${sellDate.toISOString().split('T')[0]}.</p>
             `;
         }
     </script>
