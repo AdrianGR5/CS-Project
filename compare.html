@@ -16,27 +16,27 @@
             background-color: #437A93 !important;; 
         }
 
-        /* Custom style for chart containers */
+     
         .chart-container {
             display: flex;
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center items horizontally */
-            margin-bottom: 20px; /* Reduced margin */
-            padding: 0 20px; /* Consistent padding on left and right */
-            text-align: center; /* Center text */
+            flex-direction: column; 
+            align-items: center; 
+            margin-bottom: 20px; 
+            padding: 0 20px; 
+            text-align: center; 
         }
         .chart {
             width: 100%;
             max-width: 800px;
             height: 400px;
-            margin: 10px auto; /* Reduced margin */
+            margin: 10px auto; 
         }
         .chart-description {
             max-width: 800px;
-            margin-bottom: 10px; /* Reduced margin */
+            margin-bottom: 10px;
         }
 
-        /* Custom style for active tab text background */
+        
         .w3-bar .active-tab {
             background-color: white;
             color: black;
@@ -44,67 +44,67 @@
             border-radius: 4px;
         }
 
-        /* Custom style for analytics boxes */
+       
         .analytics-box {
-            padding: 12px; /* Reduced padding */
+            padding: 12px; 
             text-align: center;
-            margin: 8px; /* Reduced margin */
+            margin: 8px; 
             border-radius: 8px;
             background-color: #f1f1f1;
-            width: 250px; /* Increased width to fit text in one line */
-            height: 110px; /* Slightly reduced height */
+            width: 250px; 
+            height: 110px; 
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center content vertically */
-            align-items: center; /* Center content horizontally */
+            justify-content: center; 
+            align-items: center; 
         }
         .analytics-box h4 {
             font-size: 14px;
             margin: 0;
             color: #666;
-            white-space: nowrap; /* Prevent text from wrapping to the next line */
+            white-space: nowrap; 
         }
         .analytics-box p {
-            font-size: 22px; /* Slightly reduced font size */
-            margin: 6px 0 0; /* Reduced margin */
+            font-size: 22px; 
+            margin: 6px 0 0; 
             font-weight: bold;
             color: #333;
-            white-space: nowrap; /* Prevent text from wrapping to the next line */
+            white-space: nowrap; 
         }
 
-        /* Custom layout for analytics boxes */
+        
         .analytics-container {
             display: flex;
             justify-content: center;
-            gap: 30px; /* Reduced gap between columns */
+            gap: 30px; 
         }
         .analytics-column {
             display: flex;
             flex-direction: column;
-            gap: 15px; /* Reduced gap between boxes in the same column */
+            gap: 15px; 
         }
 
         .title_column{
             margin-bottom: -15px;
         }
 
-        /* Reduce space between sections */
+        
         .w3-container.w3-padding-64.w3-center {
-            padding-top: 32px !important; /* Reduced padding */
-            padding-bottom: 32px !important; /* Reduced padding */
+            padding-top: 32px !important;
+            padding-bottom: 32px !important; 
         }
 
-        /* Reduce space between "Comparison of Analytics" and "Key metrics" */
+        
         .w3-container.w3-padding-64.w3-center h2 {
-            margin-bottom: 8px; /* Reduced margin below the heading */
+            margin-bottom: 8px; 
         }
         .w3-container.w3-padding-64.w3-center p.w3-opacity {
-            margin-top: 8pxpx; /* Remove margin above the "Key metrics" text */
+            margin-top: 8pxpx; 
             margin-bottom: -50px;
             padding-bottom: 0px;
         }
 
-        /* Center the disclaimer and recommendations section */
+     
         .disclaimer-recommendations {
             text-align: center;
             margin: 0 auto;
@@ -112,7 +112,7 @@
             padding: 20px;
         }
 
-        /* Improve text readability */
+        
         .disclaimer-recommendations h4 {
             font-size: 24px;
             margin-bottom: 16px;
@@ -132,7 +132,7 @@
             margin-bottom: 20px;
         }
 
-        /* Poll and Comments Section */
+        
         .poll-section {
             text-align: center;
             margin: 40px auto;
@@ -198,12 +198,12 @@
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            margin-bottom: 10px; /* Reduced margin */
+            margin-bottom: 10px; 
         }
 
         .comments-section .submit-container {
             display: flex;
-            justify-content: flex-end; /* Align button to the right */
+            justify-content: flex-end;
             width: 100%;
             max-width: 600px;
             margin: 0 auto;
@@ -238,7 +238,7 @@
 </head>
 <body>
 
-    <!-- Navbar -->
+    
     <div class="w3-top">
         <div class="w3-bar w3-red w3-card w3-left-align w3-large">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
@@ -255,7 +255,7 @@
         </div>
     </div>
 
-    <!-- Header -->
+   
     <header class="w3-container w3-red w3-center" style="padding:64px 16px">
         <h1 class="w3-margin w3-jumbo">S&P 500 vs Bitcoin</h1>
         <p class="w3-xlarge">Examination Number: 247070</p>
@@ -275,50 +275,50 @@
         </div>
         
         <div class="analytics-container">
-            <!-- S&P 500 Column (Left) -->
+
             <div class="analytics-column">
                 <h3 class="title_column">S&P 500</h3>
-                <!-- Box for Average Annual Returns -->
+                
                 <div class="analytics-box">
                     <h4>Average Annual Returns</h4>
                     <p id="average-returns">8.52%</p>
                 </div>
-                <!-- Box for Annual Growth Rate (CAGR) -->
+                
                 <div class="analytics-box">
                     <h4>Annual Growth Rate (CAGR)</h4>
                     <p id="cagr">9.23%</p>
                 </div>
-                <!-- Box for Maximum Drawdown -->
+                
                 <div class="analytics-box">
                     <h4>Maximum Drawdown</h4>
                     <p id="max-drawdown">-37.2%</p>
                 </div>
-                <!-- Box for Average Maximum Loss by Year -->
+               
                 <div class="analytics-box">
                     <h4>Average Maximum Drawdown by Year</h4>
                     <p id="avg-loss">-15.4%</p>
                 </div>
             </div>
 
-            <!-- Bitcoin Column (Right) -->
+           
             <div class="analytics-column">
                 <h3 class="title_column">Bitcoin</h3>
-                <!-- Box for Average Annual Returns -->
+                
                 <div class="analytics-box">
                     <h4>Average Annual Returns</h4>
                     <p id="average-returns">150.25%</p>
                 </div>
-                <!-- Box for Annual Growth Rate (CAGR) -->
+                
                 <div class="analytics-box">
                     <h4>Annual Growth Rate (CAGR)</h4>
                     <p id="cagr">200.50%</p>
                 </div>
-                <!-- Box for Maximum Drawdown -->
+                
                 <div class="analytics-box">
                     <h4>Maximum Drawdown</h4>
                     <p id="max-drawdown">-85.30%</p>
                 </div>
-                <!-- Box for Average Maximum Loss by Year -->
+                
                 <div class="analytics-box">
                     <h4>Average Maximum Drawdown by Year</h4>
                     <p id="avg-loss">-40.15%</p>
@@ -334,10 +334,10 @@
 
         <!-- Cumulative Returns Charts -->
         <div class="w3-row">
-            <!-- S&P 500 Chart -->
+            
             <div class="w3-col m6">
                 <div class="chart-container">
-                    <h3>S&P 500 Cumulative Returns</h3> <!-- Added heading for S&P 500 -->
+                    <h3>S&P 500 Cumulative Returns</h3> 
                     <div class="chart-description">
                         <iframe src="cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
                     </div>
@@ -347,7 +347,7 @@
             <!-- Bitcoin Chart -->
             <div class="w3-col m6">
                 <div class="chart-container">
-                    <h3>Bitcoin Cumulative Returns</h3> <!-- Added heading for Bitcoin -->
+                    <h3>Bitcoin Cumulative Returns</h3> 
                     <div class="chart-description">
                         <iframe src="bitcoin_cumulative_returns_chart.html" class="chart" style="width: 800px; height: 400px; border: none; overflow: hidden;" scrolling="no"></iframe>
                     </div>
@@ -392,19 +392,19 @@
             <button onclick="submitComment()">Submit</button>
         </div>
         <div class="comments-list" id="comments-list">
-            <!-- Comments will be dynamically added here -->
+       
         </div>
     </div>
 
     <script>
-        // Load votes and comments from localStorage on page load
+        
         document.addEventListener('DOMContentLoaded', function () {
             // Load votes
             const storedVotes = JSON.parse(localStorage.getItem('votes')) || { bitcoin: 0, sp500: 0 };
             document.getElementById('bitcoin-votes').textContent = storedVotes.bitcoin;
             document.getElementById('sp500-votes').textContent = storedVotes.sp500;
 
-            // Load comments
+          
             const storedComments = JSON.parse(localStorage.getItem('comments')) || [];
             const commentsList = document.getElementById('comments-list');
             storedComments.forEach(comment => {
@@ -427,7 +427,7 @@
                 document.getElementById('sp500-votes').textContent = storedVotes.sp500;
             }
 
-            // Save votes to localStorage
+           
             localStorage.setItem('votes', JSON.stringify(storedVotes));
         }
 
@@ -443,12 +443,12 @@
                 newComment.textContent = commentText;
                 commentsList.appendChild(newComment);
 
-                // Save comments to localStorage
+               
                 const storedComments = JSON.parse(localStorage.getItem('comments')) || [];
                 storedComments.push(commentText);
                 localStorage.setItem('comments', JSON.stringify(storedComments));
 
-                // Clear the input field
+                
                 commentInput.value = '';
             }
         }

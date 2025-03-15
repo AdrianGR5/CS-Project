@@ -16,14 +16,14 @@
             background-color: #437A93 !important;;
         }
 
-        /* Custom style for chart containers */
+       
         .chart-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-bottom: 30px;
             padding: 0 20px;
-            text-align: center; /* Center text */
+            text-align: center; 
         }
         .chart {
             width: 100%;
@@ -33,10 +33,10 @@
         }
         .chart-description {
             max-width: 800px;
-            margin-bottom: 20px; /* Add margin below the text */
+            margin-bottom: 20px; 
         }
 
-        /* Custom style for active tab text background */
+        
         .w3-bar .active-tab {
             background-color: white;
             color: black;
@@ -44,64 +44,63 @@
             border-radius: 4px;
         }
 
-        /* Custom style for analytics boxes */
+       
         .analytics-box {
             padding: 16px;
             text-align: center;
             margin: 10px;
             border-radius: 8px;
             background-color: #f1f1f1;
-            width: 250px; /* Increased width to fit text in one line */
-            height: 120px; /* Fixed height for all boxes */
+            width: 250px; 
+            height: 120px; 
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center content vertically */
-            align-items: center; /* Center content horizontally */
+            justify-content: center; 
+            align-items: center; 
         }
         .analytics-box h4 {
             font-size: 14px;
             margin: 0;
             color: #666;
-            white-space: nowrap; /* Prevent text from wrapping to the next line */
+            white-space: nowrap; 
         }
         .analytics-box p {
             font-size: 24px;
             margin: 8px 0 0;
             font-weight: bold;
             color: #333;
-            white-space: nowrap; /* Prevent text from wrapping to the next line */
+            white-space: nowrap; 
         }
 
-        /* Custom layout for analytics boxes */
+      
         .analytics-container {
             display: flex;
             justify-content: center;
-            gap: 20px; /* Space between left and right columns */
+            gap: 20px; 
         }
         .analytics-column {
             display: flex;
             flex-direction: column;
-            gap: 20px; /* Space between boxes in the same column */
+            gap: 20px; 
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-red w3-card w3-left-align w3-large">
         <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-        <!-- Add the active-tab class to the Home tab -->
+        
         <a href="#home" class="w3-bar-item w3-button w3-padding-large active-tab">Home</a>
         <a href="compare.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Compare</a>
         <a href="return.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Calculators</a>
 
     </div>
 
-    <!-- Navbar on small screens -->
+ 
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-        <!-- Add the active-tab class to the Home tab for small screens -->
+        
         <a href="#home" class="w3-bar-item w3-button w3-padding-large active-tab">Home</a>
         <a href="compare.html" class="w3-bar-item w3-button w3-padding-large">Compare</a>
         <a href="return.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large">Calculators</a>
@@ -109,39 +108,39 @@
     </div>
 </div>
 
-<!-- Header -->
+
 <header class="w3-container w3-red w3-center" style="padding:64px 16px" id="home">
     <h1 class="w3-margin w3-jumbo">S&P 500 Dashboard</h1>
     <p class="w3-xlarge">Examination Number: 247070</p>
     <a href="#analytics" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Explore Analytics</a>
 </header>
 
-<!-- Analytics Summary -->
+
 <div class="w3-container w3-padding-64 w3-center" id="analytics">
     <h2 class="w3-wide">Analytics Summary</h2>
     <p class="w3-opacity"><i>Key metrics of S&P 500 performance</i></p>
     <div class="analytics-container">
-        <!-- Left Column -->
+     
         <div class="analytics-column">
-            <!-- Box for Average Annual Returns -->
+        
             <div class="analytics-box">
                 <h4>Average Annual Returns</h4>
                 <p id="average-returns">8.52%</p>
             </div>
-            <!-- Box for Annual Growth Rate (CAGR) -->
+            
             <div class="analytics-box">
                 <h4>Annual Growth Rate (CAGR)</h4>
                 <p id="cagr">9.23%</p>
             </div>
         </div>
-        <!-- Right Column -->
+       
         <div class="analytics-column">
-            <!-- Box for Maximum Drawdown -->
+           
             <div class="analytics-box">
                 <h4>Maximum Drawdown</h4>
                 <p id="max-drawdown">-37.2%</p>
             </div>
-            <!-- Box for Average Maximum Loss by Year -->
+   
             <div class="analytics-box">
                 <h4>Average Maximum Drawdown by Year</h4>
                 <p id="avg-loss">-15.4%</p>
@@ -155,7 +154,7 @@
     <h2 class="w3-wide w3-center">Visualizations</h2>
     <p class="w3-opacity w3-center"><i>Interactive charts of S&P 500 trends</i></p>
 
-    <!-- Event Filter Dropdown -->
+    
     <div class="w3-center" style="margin-bottom: 20px;">
         <label for="event-filter">Select Historical Event:</label>
         <select id="event-filter" onchange="filterEvent(this.value)">
@@ -206,27 +205,27 @@
 <!-- JavaScript to handle event filtering -->
 <script>
     function filterEvent(event) {
-        // Get the iframes for the charts
+        
         const cumulativeReturnsIframe = document.getElementById('cumulative-returns-iframe');
         const annualReturnsIframe = document.getElementById('annual-returns-iframe');
         const drawdownsIframe = document.getElementById('drawdowns-iframe');
     
-        // Define the base filenames for the charts
+       
         const baseCumulativeReturns = 'cumulative_returns_';
         const baseDrawdowns = 'drawdowns_';
     
-        // If no event is selected, load the default charts
+        
         if (!event) {
             cumulativeReturnsIframe.src = 'cumulative_returns_chart.html';
             drawdownsIframe.src = 'drawdowns_chart.html';
         } else {
-            // Sanitize the event name to match the filenames
+           
             const sanitizedEvent = event.replace(/[^a-zA-Z0-9_]/g, '_');
             cumulativeReturnsIframe.src = `${baseCumulativeReturns}${sanitizedEvent}.html`;
             drawdownsIframe.src = `${baseDrawdowns}${sanitizedEvent}.html`;
         }
     
-        // Always load the default Annual Returns chart
+      
         annualReturnsIframe.src = 'annual_returns_chart.html';
     }
     </script>

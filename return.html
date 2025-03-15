@@ -16,14 +16,14 @@
             background-color: #437A93 !important;;
         }
 
-        /* Custom style for chart containers */
+        
         .chart-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-bottom: 30px;
             padding: 0 20px;
-            text-align: center; /* Center text */
+            text-align: center; 
         }
         .chart {
             width: 100%;
@@ -33,10 +33,10 @@
         }
         .chart-description {
             max-width: 800px;
-            margin-bottom: 20px; /* Add margin below the text */
+            margin-bottom: 20px; 
         }
 
-        /* Custom style for active tab text background */
+    
         .w3-bar .active-tab {
             background-color: white;
             color: black;
@@ -44,47 +44,47 @@
             border-radius: 4px;
         }
 
-        /* Custom style for analytics boxes */
+      
         .analytics-box {
             padding: 16px;
             text-align: center;
             margin: 10px;
             border-radius: 8px;
             background-color: #f1f1f1;
-            width: 250px; /* Increased width to fit text in one line */
-            height: 120px; /* Fixed height for all boxes */
+            width: 250px; 
+            height: 120px;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center content vertically */
-            align-items: center; /* Center content horizontally */
+            justify-content: center; 
+            align-items: center; 
         }
         .analytics-box h4 {
             font-size: 14px;
             margin: 0;
             color: #666;
-            white-space: nowrap; /* Prevent text from wrapping to the next line */
+            white-space: nowrap; 
         }
         .analytics-box p {
             font-size: 24px;
             margin: 8px 0 0;
             font-weight: bold;
             color: #333;
-            white-space: nowrap; /* Prevent text from wrapping to the next line */
+            white-space: nowrap; 
         }
 
-        /* Custom layout for analytics boxes */
+       
         .analytics-container {
             display: flex;
             justify-content: center;
-            gap: 20px; /* Space between left and right columns */
+            gap: 20px; 
         }
         .analytics-column {
             display: flex;
             flex-direction: column;
-            gap: 20px; /* Space between boxes in the same column */
+            gap: 20px; 
         }
 
-        /* Style for the return calculator form */
+        
         .calculator-form {
             max-width: 400px;
             margin: 0 auto;
@@ -92,11 +92,11 @@
             background-color: #f9f9f9;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%; /* Ensure both forms have the same width */
+            width: 100%; 
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Ensure content is spaced evenly */
-            height: 100%; /* Ensure both forms have the same height */
+            justify-content: space-between; 
+            height: 100%; 
         }
         .calculator-form label {
             display: block;
@@ -129,24 +129,24 @@
             text-align: center;
         }
 
-        /* Layout for the two calculators */
+     
         .calculator-container {
             display: flex;
             justify-content: center;
-            gap: 40px; /* Space between the two calculators */
+            gap: 40px; 
             margin-top: 40px;
-            align-items: flex-start; /* Align items at the top */
+            align-items: flex-start; 
         }
 
-        /* Ensure both calculators have the same width and alignment */
+      
         .calculator-container > div {
             flex: 1;
             max-width: 400px;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center the content horizontally */
+            align-items: center; 
         }
-        /* Existing CSS */
+       
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
@@ -174,7 +174,7 @@ td:nth-child(2) a {
     text-decoration: underline;
 }
 
-/* New CSS for active tab */
+
 .w3-bar .w3-button.active-tab {
     background-color: white !important;
     color: black !important;
@@ -202,14 +202,14 @@ td:nth-child(2) a {
         </div>
     </div>
 
-    <!-- Header -->
+    
     <header class="w3-container w3-red w3-center" style="padding:64px 16px" id="home">
         <h1 class="w3-margin w3-jumbo">Calculators</h1>
         <p class="w3-xlarge">Examination Number: 247070</p>
         <a href="#calculator" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Use Calculators</a>
     </header>
 
-    <!-- Calculator Container -->
+  
     <div class="w3-container w3-padding-64" id="calculator">
         <div class="calculator-container">
             <!-- Compound Interest Calculator -->
@@ -217,7 +217,7 @@ td:nth-child(2) a {
                 <h2 class="w3-wide w3-center">Compound Interest Calculator</h2>
                 <p class="w3-opacity w3-center"><i>Calculate the future value of your investment</i></p>
 
-                <!-- Calculator Form -->
+                
                 <div class="calculator-form">
                     <label for="initialAmount">Initial Investment Amount ($):</label>
                     <input type="number" id="initialAmount" placeholder="Enter initial amount - eg(3000)">
@@ -230,19 +230,21 @@ td:nth-child(2) a {
 
                     <button onclick="calculateReturn()">Calculate</button>
 
-                    <!-- Result Display -->
+                   
                     <div class="calculator-result" id="result"></div>
                 </div>
             </div>
+
+
 
             <!-- S&P 500 Investment Calculator -->
             <div>
                 <h2 class="w3-wide w3-center">S&P 500 Investment Calculator</h2>
                 <p class="w3-opacity w3-center"><i>Calculate your return based on historical S&P 500 data</i></p>
 
-                <!-- S&P 500 Calculator Form -->
+                
                 <div class="calculator-form">
-                    <!-- Buy Date Row -->
+                   
                     <div style="display: flex; gap: 10px; margin-bottom: 16px;">
                         <div style="flex: 1;">
                             <label for="buyDay">Buy Day:</label>
@@ -282,39 +284,40 @@ td:nth-child(2) a {
 
                     <button onclick="calculateSP500Return()">Calculate</button>
 
-                    <!-- Result Display -->
+                   
                     <div class="calculator-result" id="sp500Result"></div>
                 </div>
             </div>
         </div>
     </div>
 
+    
     <!-- JavaScript for the Calculators -->
     <script>
         // Function to check if a date is a weekday
         function isWeekday(date) {
             const day = date.getDay();
-            // getDay() returns 0 (Sunday) to 6 (Saturday)
-            return day >= 1 && day <= 5; // Monday to Friday are weekdays
+           
+            return day >= 1 && day <= 5; 
         }
 
         // Compound Interest Calculator
         function calculateReturn() {
-            // Get input values
+            
             const initialAmount = parseFloat(document.getElementById('initialAmount').value);
             const annualReturn = parseFloat(document.getElementById('annualReturn').value);
             const years = parseFloat(document.getElementById('years').value);
 
-            // Validate inputs
+          
             if (isNaN(initialAmount) || isNaN(annualReturn) || isNaN(years)) {
                 alert("Please enter valid numbers for all fields.");
                 return;
             }
 
-            // Calculate the future value
+          
             const futureValue = initialAmount * Math.pow(1 + (annualReturn / 100), years);
 
-            // Display the result
+         
             document.getElementById('result').innerHTML = `
                 <p>Future Value: $${futureValue.toFixed(2)}</p>
             `;
@@ -322,7 +325,7 @@ td:nth-child(2) a {
 
         // S&P 500 Investment Calculator
         async function calculateSP500Return() {
-            // Get input values
+         
             const buyDay = document.getElementById('buyDay').value;
             const buyMonth = document.getElementById('buyMonth').value;
             const buyYear = document.getElementById('buyYear').value;
@@ -331,17 +334,17 @@ td:nth-child(2) a {
             const sellYear = document.getElementById('sellYear').value;
             const initialInvestment = parseFloat(document.getElementById('initialInvestment').value);
 
-            // Validate inputs
+        
             if (!buyDay || !buyMonth || !buyYear || !sellDay || !sellMonth || !sellYear || isNaN(initialInvestment)) {
                 alert("Please enter valid dates and initial investment.");
                 return;
             }
 
-            // Construct buy and sell dates
+         
             const buyDate = new Date(`${buyYear}-${buyMonth.padStart(2, '0')}-${buyDay.padStart(2, '0')}`);
             const sellDate = new Date(`${sellYear}-${sellMonth.padStart(2, '0')}-${sellDay.padStart(2, '0')}`);
 
-            // Check if the buy and sell dates are weekdays
+            
             if (!isWeekday(buyDate)) {
                 alert("The buy date is a weekend. Please select a weekday.");
                 return;
@@ -352,12 +355,12 @@ td:nth-child(2) a {
                 return;
             }
 
-            // Fetch the CSV data
+          
             const response = await fetch('CleanHistoricalDataSP500.csv');
             const data = await response.text();
 
-            // Parse the CSV data
-            const rows = data.split('\n').slice(1); // Skip the header row
+         
+            const rows = data.split('\n').slice(1);
             let buyPrice = null;
             let sellPrice = null;
 
@@ -385,7 +388,7 @@ td:nth-child(2) a {
             // Calculate the return on investment
             const returnOnInvestment = (sellPrice / buyPrice) * initialInvestment;
 
-            // Display the result
+           
             document.getElementById('sp500Result').innerHTML = `
                 <p>If you had invested $${initialInvestment.toFixed(2)} on ${buyDate.toISOString().split('T')[0]}, you would have $${returnOnInvestment.toFixed(2)} on ${sellDate.toISOString().split('T')[0]}.</p>
             `;
